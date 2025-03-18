@@ -33,10 +33,10 @@ const ImageSlider = () => {
             setCurrentIndex((prevIndex) => 
                 prevIndex === images.length - 1 ? 0 : prevIndex + 1
             );
-        }, 5000); // Change slide every 5 seconds
+        }, 5000);
 
         return () => clearInterval(interval);
-    }, );
+    }, [images.length]);
 
     return (
         <div className="relative w-full h-full">
@@ -54,8 +54,13 @@ const ImageSlider = () => {
                                 src={image.src}
                                 alt={image.alt}
                                 fill
-                                style={{ objectFit: 'cover' }}
-                                priority={index === 0}
+                                sizes="100vw"
+                                quality={90}
+                                priority={index === currentIndex}
+                                style={{ 
+                                    objectFit: 'cover',
+                                    objectPosition: 'center'
+                                }}
                             />
                         </div>
                     </div>
@@ -73,6 +78,7 @@ const ImageSlider = () => {
                                 : 'bg-white/50'
                         }`}
                         onClick={() => setCurrentIndex(index)}
+                        aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}
             </div>
