@@ -1,36 +1,27 @@
 import * as Unicons from '@iconscout/react-unicons';
+import { Icons } from '../components/Icons';
+
+// Custom SVG icons for services
+export const ServiceIcons = {
+    Education: (props) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width={props.width} height={props.height} fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+        </svg>
+    ),
+    // Add other service icons here
+};
+
 export const services = [
     {
-        Icon: Unicons.UilAdjustCircle,
-        title: 'Grow Your Business',
-        description: "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+        Icon: ServiceIcons.Education,
+        title: "Education Services",
+        description: "Description of education services"
     },
-    {
-        Icon:  Unicons.UilCircuit ,
-        title: 'Drive More Sales',
-        description: "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
-    },
-    {
-        Icon: Unicons.UilFire ,
-        title: 'Handled By Expert',
-        description: "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
-    },
-    {
-        Icon: Unicons.UilFlower,
-        title: 'Increase Conversion',
-        description: "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
-    },
-    {
-        Icon: Unicons.UilShoppingBasket,
-        title: 'Drive More Sales',
-        description: "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
-    },
-    {
-        Icon: Unicons.UilFlipH,
-        title: 'Sales Growth Idea',
-        description: "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
-    }
+    // Add other services here
 ];
+
 export  const clientData = [
     {
         name:'Thomas Israel',
@@ -172,21 +163,21 @@ export const MeetOursdata = [
 ]
 export const Contact = [
     {
-        Icon: Unicons.UilPhone ,
-        title: 'Phone',
-        detail: 'The phrasal sequence of the is now so that many campaign and benefit',
-        type: '+152 534-468-854'
+        Icon: Icons.Phone,
+        title: "Phone",
+        detail: "Contact us through phone",
+        type: "+152 534-468-854"
     },
     {
-        Icon: Unicons.UilEnvelope,
-        title: 'Email',
-        detail: 'The phrasal sequence of the is now so that many campaign and benefit',
-        type: 'contact@example.com'
+        Icon: Icons.Mail,
+        title: "Email",
+        detail: "Contact us through email",
+        type: "contact@example.com"
     },
     {
-        Icon: Unicons.UilMapMarker ,
-        title: 'Location',
-        detail: 'C/54 Northwest Freeway, Suite 558, Houston, USA 485',
-        type: 'View on Google map'
+        Icon: Icons.MapPin,
+        title: "Location",
+        detail: "View our office location",
+        type: "View on Google map"
     }
 ]
