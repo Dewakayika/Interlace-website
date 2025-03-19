@@ -9,7 +9,7 @@ const ContactPopup = () => {
         {
             title: "IELTS Course",
             subtitle: "+6285847419359",
-            icon: <UilPhone className="w-6 h-6" />,
+            icon: <UilWhatsapp className="w-6 h-6" />,
             action: "Chat Now",
             type: "whatsapp",
             number: "6285847419359"
@@ -44,7 +44,7 @@ const ContactPopup = () => {
             {/* Floating Button */}
             <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 bg-violet-600 text-white p-4 rounded-full shadow-lg hover:bg-violet-700 transition-all duration-500 ease-in-out transform hover:scale-110 active:scale-95"
+                className="fixed bottom-6 right-6 z-50 bg-primary-500 text-white p-4 rounded-full shadow-lg hover:bg-primary-600 transition-all duration-500 ease-in-out transform hover:scale-110 active:scale-95"
             >
                 <div className="relative w-6 h-6">
                     <div className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
@@ -78,7 +78,7 @@ const ContactPopup = () => {
                             <div className="p-4 border-b last:border-b-0 hover:bg-gray-50 transition-colors duration-200">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="bg-violet-100 p-2 rounded-full transform transition-all duration-300 hover:scale-110 hover:bg-violet-200">
+                                        <div className="bg-primary-50 p-2 rounded-full transform transition-all duration-300 hover:scale-110 hover:bg-violet-200">
                                             {contact.icon}
                                         </div>
                                         <div>
@@ -88,7 +88,7 @@ const ContactPopup = () => {
                                     </div>
                                     <button
                                         onClick={() => handleAction(contact)}
-                                        className="text-violet-600 text-sm font-medium hover:text-violet-700 transition-all duration-300 hover:scale-105 active:scale-95"
+                                        className="text-primary-500 text-sm font-medium hover:primary-600 transition-all duration-300 hover:scale-105 active:scale-95"
                                     >
                                         {contact.action}
                                     </button>

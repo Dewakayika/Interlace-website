@@ -20,13 +20,12 @@ export default function About() {
                         </div>
                         <div className="lg:col-span-7">
                             <div className="lg:ms-7">
-                                <h3 className="mb-4 md:text-2xl text-xl font-medium font-lexend">About Us: Ovaxo</h3>
+                                <h3 className="mb-4 md:text-2xl text-xl font-medium font-lexend">About Us: Interlace Studies</h3>
 
-                                <p className="text-slate-400 dark:text-slate-300 max-w-2xl font-inter mx-auto">Start working with Ovaxo that
-                                    can provide everything you need to generate awareness, drive traffic, connect. Dummy text is
-                                    text that is used in the publishing industry or by web designers to occupy the space which
-                                    will later be filled with &apos;real&apos; content. This is required when, for example, the final text
-                                    is not yet available. Dummy texts have been in use by typesetters since the 16th century.
+                                <p className="text-slate-400 dark:text-slate-300 max-w-2xl font-inter mx-auto">
+                                    Interlace Studies is a leading education and migration consultancy that helps individuals achieve their dreams of studying and migrating abroad. 
+                                    We are a team of experienced professionals who are dedicated to providing the best possible service to our clients.
+
                                 </p>
 
                                 <div className="relative mt-8">
