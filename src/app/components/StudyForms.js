@@ -2,7 +2,7 @@ import React from 'react';
 
 const StudyForms = () => {
     return (
-        <div className="relative bottom-0 left-0 right-0 mb-8">
+        <div className="relative bottom-0 left-0 right-0 mb-32 hidden md:block">
             <div className="w-full mx-auto">
                 
                 {/* Search Form */}

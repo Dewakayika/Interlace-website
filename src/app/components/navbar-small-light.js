@@ -24,18 +24,25 @@ export default function NavbarSmallLight() {
     }
     return (
         <>
-            <nav className={`${navbarTop === true ? 'is-sticky' : ''} navbar font-lexend `} id="navbar">
+            <nav className={`${navbarTop === true ? 'is-sticky' : ''} navbar font-inter `} id="navbar">
                 <div className="container flex flex-wrap items-center justify-end">
                     <a className="navbar-brand md:me-8" href="/">
-                        <span className="inline-block dark:hidden">
-                            <Image src="/images/logo/interlace-logo-light.png" priority className="l-dark" alt="logo" width={156} height={28}/>
-                            <Image src="/images/logo/interlace-logo-dark.png" priority className="l-light" alt="logo" width={156} height={28}/>
+                        {/* Desktop logo */}
+                        <span className="hidden md:inline-block dark:hidden">
+                            <Image src="/images/logo/interlace-logo-light.png" priority className="l-dark w-[156px]" alt="Interlace Studies Logo" width={156} height={28}/>
+                            <Image src="/images/logo/interlace-logo-dark.png" priority className="l-light w-[156px]" alt="Interlace Studies Logo" width={156} height={28}/>
                         </span>
-                        <Image src="/images/logo/interlace-logo-light.png" priority className="hidden dark:inline-block" alt="logo" width={156} height={28}/>
+                        <Image src="/images/logo/interlace-logo-light.png" priority className="hidden dark:md:inline-block w-[156px]" alt="Interlace Studies Logo" width={156} height={28}/>
+                        
+                        {/* Mobile logo */}
+                        <span className="md:hidden dark:hidden">
+                            <Image src="/images/logo/interlace-logo-light.png" priority className="l-dark w-[100px]" alt="Interlace Studies Logo" width={100} height={18}/>
+                            <Image src="/images/logo/interlace-logo-dark.png" priority className="l-light w-[100px]" alt="Interlace Studies Logo" width={100} height={18}/>
+                        </span>
+                        <Image src="/images/logo/interlace-logo-light.png" priority className="hidden dark:inline-block md:hidden w-[120px]" alt="Interlace Studies Logo" width={120} height={18}/>
                     </a>
 
                     <div className="nav-icons flex items-center lg_992:order-2 ms-auto lg:ms-4">
-
                         <button data-collapse="menu-collapse" type="button" onClick={toggleMenu}
                             className="collapse-btn inline-flex items-center ms-3 text-slate-950 dark:text-white lg_992:hidden"
                             aria-controls="menu-collapse" aria-expanded="false">
@@ -44,7 +51,7 @@ export default function NavbarSmallLight() {
                         </button>
                     </div>
                     <div className={`${isOpen === true ? 'navigation lg_992:order-1 lg_992:flex hidden ms-auto' : 'navigation lg_992:order-1 lg_992:flex block ms-auto'}`} id="menu-collapse">
-                        <ul className="navbar-nav nav-light" id="navbar-navlist">
+                        <ul className="navbar-nav nav-light font-inter" id="navbar-navlist">
                             <li className={`nav-item`}>
                                 <Link1 to="home" activeClass="active" spy={true} smooth={true} duration={500} className="nav-link">Home</Link1>
                             </li>

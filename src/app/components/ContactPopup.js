@@ -1,9 +1,11 @@
 'use client'
-import React, { useState } from 'react';
-import { UilPhone, UilWhatsapp, UilCalendarAlt, UilTimes } from '@iconscout/react-unicons';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { UilPhone, UilWhatsapp, UilTimes } from '@iconscout/react-unicons';
 
 const ContactPopup = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(false); // State to control visibility after scrolling
 
     const contacts = [
         {
@@ -15,7 +17,7 @@ const ContactPopup = () => {
             number: "6285847419359"
         },
         {
-            title: "Consultation",  
+            title: "Consultation",
             subtitle: "+6285847419359",
             icon: <UilWhatsapp className="w-6 h-6" />,
             action: "Chat Now",
@@ -25,7 +27,7 @@ const ContactPopup = () => {
     ];
 
     const handleAction = (contact) => {
-        switch(contact.type) {
+        switch (contact.type) {
             case 'phone':
                 window.location.href = `tel:${contact.number}`;
                 break;
@@ -33,52 +35,101 @@ const ContactPopup = () => {
                 window.open(`https://wa.me/${contact.number}`, '_blank');
                 break;
             case 'appointment':
-                // Add your appointment booking logic here
-                console.log('Book appointment');
+                console.log('Book appointment');    
                 break;
         }
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const triggerPosition = 200; // Adjust this value based on your main section height
+            setIsVisible(scrollPosition > triggerPosition);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // Animation variants
+    const popupVariants = {
+        hidden: { opacity: 0, x: 50, scale: 0.95 },
+        visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.4, ease: "easeOut" } },
+        exit: { opacity: 0, x: 50, scale: 0.95, transition: { duration: 0.4, ease: "easeIn" } }
+    };
+
+    const backdropVariants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 0.2, transition: { duration: 0.4 } },
+        exit: { opacity: 0, transition: { duration: 0.3 } }
+    };
+
+    const buttonVariants = {
+        hidden: { opacity: 0, y: 50, scale: 0.95 },
+        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.3, ease: "easeOut" } },
+        exit: { opacity:0, y: 50, scale: 0.95, transition: { duration: 0.3, ease: "easeIn" } }
     };
 
     return (
         <>
             {/* Floating Button */}
-            <button 
-                onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 bg-primary-500 text-white p-4 rounded-full shadow-lg hover:bg-primary-600 transition-all duration-500 ease-in-out transform hover:scale-110 active:scale-95"
-            >
-                <div className="relative w-6 h-6">
-                    <div className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
-                        isOpen ? 'rotate-180 opacity-100' : 'rotate-0 opacity-0'
-                    }`}>
-                        <UilTimes className="w-6 h-6" />
-                    </div>
-                    <div className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
-                        !isOpen ? 'rotate-0 opacity-100' : '-rotate-180 opacity-0'
-                    }`}>
-                        <UilPhone className="w-6 h-6" />
-                    </div>
-                </div>
-            </button>
+            <AnimatePresence>
+                {isVisible && (
+                    <motion.button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="fixed bottom-6 right-6 z-50 bg-primary-500 text-white p-4 rounded-full shadow-lg hover:bg-primary-600"
+                        variants={buttonVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <div className="relative w-6 h-6">
+                            <motion.div
+                                className="absolute inset-0"
+                                initial={{ rotate: 0, opacity: 1 }}
+                                animate={{ rotate: isOpen ? 180 : 0, opacity: isOpen ? 1 : 0 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <UilTimes className="w-6 h-6" />
+                            </motion.div>
+                            <motion.div
+                                className="absolute inset-0"
+                                initial={{ rotate: 0, opacity: 1 }}
+                                animate={{ rotate: isOpen ? -180 : 0, opacity: isOpen ? 0 : 1 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <UilPhone className="w-6 h-6" />
+                            </motion.div>
+                        </div>
+                    </motion.button>
+                )}
+            </AnimatePresence>
 
             {/* Contact Popup */}
-            <div className={`fixed bottom-24 right-6 z-50 transition-all duration-500 ease-in-out transform ${
-                isOpen ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-full opacity-0 scale-95'
-            }`}>
-                <div className="w-72 bg-white rounded-lg shadow-xl overflow-hidden">
-                    {contacts.map((contact, index) => (
-                        <div 
-                            key={index}
-                            className="transform transition-all duration-300 ease-in-out"
-                            style={{
-                                transitionDelay: `${index * 50}ms`,
-                                opacity: isOpen ? 1 : 0,
-                                transform: isOpen ? 'translateX(0)' : 'translateX(20px)'
-                            }}
-                        >
-                            <div className="p-4 border-b last:border-b-0 hover:bg-gray-50 transition-colors duration-200">
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        className="fixed bottom-24 right-6 z-50 w-72 bg-white rounded-lg shadow-xl overflow-hidden"
+                        variants={popupVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                    >
+                        {contacts.map((contact, index) => (
+                            <motion.div
+                                key={index}
+                                className="p-4 border-b last:border-b-0 hover:bg-gray-50"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1, duration: 0.4, ease: "easeOut" }}
+                            >
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="bg-primary-50 p-2 rounded-full transform transition-all duration-300 hover:scale-110 hover:bg-violet-200">
+                                        <div className="bg-primary-50 p-2 rounded-full hover:scale-110 transition-transform">
                                             {contact.icon}
                                         </div>
                                         <div>
@@ -88,26 +139,32 @@ const ContactPopup = () => {
                                     </div>
                                     <button
                                         onClick={() => handleAction(contact)}
-                                        className="text-primary-500 text-sm font-medium hover:primary-600 transition-all duration-300 hover:scale-105 active:scale-95"
+                                        className="text-primary-500 text-sm font-medium hover:scale-105 transition-transform"
                                     >
                                         {contact.action}
                                     </button>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Backdrop */}
-            <div 
-                className={`fixed inset-0 bg-black transition-all duration-500 ease-in-out ${
-                    isOpen ? 'opacity-20' : 'opacity-0 pointer-events-none'
-                }`}
-                onClick={() => setIsOpen(false)}
-            />
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        className="fixed inset-0 bg-black"
+                        variants={backdropVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        onClick={() => setIsOpen(false)}
+                    />
+                )}
+            </AnimatePresence>
         </>
     );
 };
 
-export default ContactPopup; 
+export default ContactPopup;
