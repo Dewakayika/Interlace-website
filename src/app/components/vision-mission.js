@@ -19,7 +19,7 @@ const VisionMission = () => {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="text-primary-500 text-sm md:text-lg font-medium">
                         Vision & Mission
                     </motion.h3>
@@ -27,7 +27,7 @@ const VisionMission = () => {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="text-2xl sm:text-2xl md:text-4xl font-bold mt-2 px-4">
                           Let`s grow your career at
                          <br></br> <span className="text-primary-500">Interlace Studies</span>
@@ -43,7 +43,7 @@ const VisionMission = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                         className="flex flex-col md:flex-row">
                         <div className="p-4 md:p-8 flex-1">
                           <div className="flex items-start relative h-full">
@@ -64,7 +64,7 @@ const VisionMission = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                         className="flex flex-col-reverse md:flex-row">
                         <Image src="/images/ilustrations/mision.png" className="w-full md:w-auto max-h-[300px] md:max-h-[400px] object-cover rounded-b-2xl md:rounded-l-2xl md:rounded-t-none" width={350} height={350} alt="One stop solution for working oversease" priority/>
                         <div className="p-4 md:p-8 flex-1">

@@ -24,7 +24,7 @@ const CTACard = () => {
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="text-white w-full md:max-w-lg">
                             
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight md:text-left text-center">
@@ -38,7 +38,7 @@ const CTACard = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             className="mt-6 w-full sm:w-auto bg-white text-blue-500 px-6 py-3 rounded-lg font-medium shadow-md hover:bg-gray-100 transition duration-300">
                             Consultation Now →
                         </motion.button>
@@ -49,7 +49,7 @@ const CTACard = () => {
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="mt-8 md:mt-0 md:ml-8 relative md:absolute md:top-0 md:right-0">
 
                         <Image 

@@ -53,7 +53,7 @@ const Information = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className={`rounded-2xl md:p-12 md:pb-12 p-5 pb-10 text-white ${cards[0].background} col-span-1 lg:col-span-2 md:h-[400px] relative overflow-hidden`}>
 
                     <div className="flex items-end justify-between align-center h-full">
@@ -76,7 +76,7 @@ const Information = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className={`rounded-2xl md:pt-0 md:pb-8 md:px-8 px-5 pb-8 text-white ${card.background} md:h-[650px] flex flex-col items-center`}>
 
                         <div className="flex flex-col items-center h-full justify-between">

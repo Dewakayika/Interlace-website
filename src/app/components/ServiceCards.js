@@ -25,7 +25,7 @@ const ServiceCards = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="text-xs font-medium md:text-base text-justify">
                         ABOUT US
                     </motion.span>
@@ -35,7 +35,7 @@ const ServiceCards = () => {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="max-w-[90%] mb-10">
                     {mainText.split(" ").map((word, i) => (
                         <motion.span
@@ -49,7 +49,7 @@ const ServiceCards = () => {
                                     delay: i * 0.03,
                                     ease: "easeOut" }
                             }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             className=" inline-block mr-[0.2em] text-xl md:text-[2.5rem] font-bold md:font-medium leading-[1.3] tracking-[-0.04rem] text-justify"
                             style={{ fontFamily: 'Inter, sans-serif' }}
                         >
@@ -69,7 +69,7 @@ const ServiceCards = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             className="flex flex-col items-center"
                         >
                             <span className="text-3xl md:text-4xl font-bold text-primary-500">{stat.value}</span>
