@@ -31,7 +31,7 @@ export default function NavbarSmallLight() {
                     {/* Desktop Logo */}
                     <span className="hidden md:inline-block dark:hidden">
                         <Image
-                            src="/images/logo/interlace-logo-dark.png"
+                            src="/images/logo/interlace-logo-light.png"
                             priority
                             className="l-dark w-[156px]"
                             alt="Interlace Studies Logo"
