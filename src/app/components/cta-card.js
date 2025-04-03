@@ -22,7 +22,7 @@ const CTACard = () => {
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className="text-white max-w-lg"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -36,7 +36,7 @@ const CTACard = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         className="mt-6 bg-white text-blue-500 px-6 py-3 rounded-lg font-medium shadow-md hover:bg-gray-100 transition duration-300"
                     >
                         Consultation Now →
@@ -48,7 +48,7 @@ const CTACard = () => {
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className="mt-8 md:mt-0 md:ml-8 absolute top-0 right-0">
                     <Image src="/images/ilustrations/pasport-visa.svg" alt="Passport and Card" width={350} height={350} className="w-full max-w-sm" />
                 </motion.div>

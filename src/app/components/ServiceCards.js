@@ -25,7 +25,7 @@ const ServiceCards = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         className="text-xs font-medium md:text-base text-justify">
                         ABOUT US
                     </motion.span>
@@ -49,7 +49,7 @@ const ServiceCards = () => {
                                     delay: i * 0.03,
                                     ease: "easeOut" }
                             }}
-                            viewport={{ once: false }}
+                            viewport={{ once: true }}
                             className=" inline-block mr-[0.2em] text-xl md:text-[2.5rem] font-bold md:font-medium leading-[1.3] tracking-[-0.04rem] text-justify"
                             style={{ fontFamily: 'Inter, sans-serif' }}
                         >

@@ -20,7 +20,7 @@ const VisionMission = () => {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         className="text-primary-500 text-lg font-medium">
                         Vision & Mission
                     </motion.h3>
@@ -28,7 +28,7 @@ const VisionMission = () => {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         className="text-3xl md:text-4xl font-bold mt-2">
                           Let`s grow your career at
                          <br></br> <span className="text-primary-500">Interlace Studies</span>
@@ -45,7 +45,7 @@ const VisionMission = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                         className="order-2 md:order-1 flex ">
 
                         <div className="p-8 ">
@@ -71,7 +71,7 @@ const VisionMission = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                         className="order-2 md:order-1 flex ">
                           <Image src="/images/ilustrations/mision.png" className="w-full max-h-[400px] object-cover rounded-l-2xl" width={350} height={350} alt="One stop solution for working oversease" priority/>
 

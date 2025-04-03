@@ -53,7 +53,7 @@ const Information = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className={`rounded-2xl p-12 text-white ${cards[0].background} col-span-1 lg:col-span-2 md:h-[400px] relative overflow-hidden`}>
 
                     <div className="flex items-end justify-between align-center h-full">
@@ -78,7 +78,7 @@ const Information = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[1].background} md:h-[650px] flex flex-col items-center`}>
 
                     <div className="flex flex-col items-center h-full justify-between">
@@ -100,7 +100,7 @@ const Information = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[2].background} md:h-[650px] flex flex-col items-center`}>
 
                     <div className="flex flex-col items-center h-full justify-between">
@@ -123,7 +123,7 @@ const Information = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[3].background} md:h-[650px] flex flex-col items-center`}>
 
                     <div className="flex flex-col items-center h-full justify-between">
@@ -145,7 +145,7 @@ const Information = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[4].background} md:h-[650px] flex flex-col items-center`}>
 
                     <div className="flex flex-col items-center h-full justify-between">

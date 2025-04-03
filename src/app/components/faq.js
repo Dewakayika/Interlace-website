@@ -33,7 +33,7 @@ const FAQ = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className="text-5xl leading-[120%]  font-bold text-gray-800 ">
                     Frequently Asked <span className="text-primary-500">Questions</span>
                 </motion.h2>
@@ -41,7 +41,7 @@ const FAQ = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     className="text-gray-600 mt-4">
                     Find detailed answers to common inquiries about our services, company policies, and customer support options to help you get the best experience.
                 </motion.p>
@@ -54,7 +54,7 @@ const FAQ = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         className="bg-white shadow-sm rounded-lg overflow-hidden"
                     >
                         <button
