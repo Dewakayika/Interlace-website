@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 const LogosSlider = () => {
     const logos = [
@@ -31,11 +32,11 @@ const LogosSlider = () => {
     }, []);
 
     return (
-
         <motion.div ref={sliderRef} className="relative overflow-hidden cursor-grab mt-20 mb-20">
-            <div className='text-xs font-medium md:text-base text-center mb-10 text-gray-600 font-inter'>
+            <div className="text-xs font-medium md:text-base text-center mb-10 text-gray-600 font-inter">
                 Our Top University & College Partners
             </div>
+
             {/* Left Fade */}
             <div className="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
 
@@ -50,18 +51,18 @@ const LogosSlider = () => {
                     repeat: Infinity,
                     ease: "linear"
                 }}
-                style={{ display: "flex" }}
             >
                 {/* Duplicate the logos array to create a seamless loop */}
-                {/* Duplicate the logos array to create a seamless loop */}
                 {[...logos, ...logos].map((logo, index) => (
-                    <motion.div key={index} className="flex items-center justify-center min-w-[150px]" >
-                        <img
-                            src={logo}
+                    <div key={index} className="flex items-center justify-center min-w-[150px]">
+                        <Image src={logo}
                             alt={`Logo ${index + 1}`}
                             className="max-h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                            loading="lazy"
+                            width={150}
+                            height={50}
                         />
-                    </motion.div>
+                    </div>
                 ))}
             </motion.div>
         </motion.div>

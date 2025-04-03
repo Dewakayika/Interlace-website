@@ -12,7 +12,7 @@ const VisionMission = () => {
                 {/* Absolute Centered Image */}
                 <Image src="/images/ilustrations/ilustration-vision-mission.svg" 
                     className="absolute z-[-1] top-[-250%] left-1/2 transform -translate-x-1/2"
-                    width={1000} height={1000} alt="Education & Carieer Consultant"/>
+                    width={1000} height={1000} alt="Education & Carieer Consultant" loading="lazy"/>
 
                 {/* Title Content */}
                 <div className="relative z-10 text-center mt-56 mb-40">
@@ -61,7 +61,7 @@ const VisionMission = () => {
                           </div>
                           </div>
                         </div>
-                        <Image src="/images/ilustrations/vision.svg" className="w-full max-h-[400px] object-cover rounded-r-2xl" width={350} height={350} alt="Skill & Migration Services"/>
+                        <Image src="/images/ilustrations/vision.png" className="w-full max-h-[400px] object-cover rounded-r-2xl" width={350} height={350} alt="Skill & Migration Services" priority/>
                     </motion.div>  
                 </div>
 
@@ -73,7 +73,7 @@ const VisionMission = () => {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     viewport={{ once: false }}
                         className="order-2 md:order-1 flex ">
-                          <Image src="/images/ilustrations/mission.svg" className="w-full max-h-[400px] object-cover rounded-l-2xl" width={350} height={350} alt="One stop solution for working oversease"/>
+                          <Image src="/images/ilustrations/mision.png" className="w-full max-h-[400px] object-cover rounded-l-2xl" width={350} height={350} alt="One stop solution for working oversease" priority/>
 
                         <div className="p-8 ">
                               {/* <div className="bg-primary-100 text-primary-500 w-10 h-10 flex items-center justify-center rounded-full font-bold">
