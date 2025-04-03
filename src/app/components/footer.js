@@ -25,16 +25,6 @@ export default function Footer() {
                     <p className="max-w-xl mx-auto text-slate-400 mt-8">
                         Interlace Studies is a leading education and migration consultancy that helps individuals achieve their dreams of studying and migrating abroad.
                     </p>
-                    {/* Navigation Links */}
-                    <ul className="list-none footer-list text-center mt-8">
-                        {['Services', 'About Us', 'Blogs', 'Team', 'Contact Us'].map((item, index) => (
-                            <li key={index} className="inline px-2">
-                                <Link href="#" className="text-gray-300 hover:text-gray-400 duration-500 ease-in-out">
-                                    {item}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
                 </div>
             </div>
 
@@ -51,14 +41,13 @@ export default function Footer() {
                             { href: 'https://www.linkedin.com/company/interlace-studies-bali/about/', icon: <UilLinkedin width={16} /> },
                             { href: 'https://www.facebook.com/profile.php?id=61573884216310', icon: <UilFacebook width={16} /> },
                             { href: 'https://www.instagram.com/interlacestudies.bali/', icon: <UilInstagram width={16} /> },
-                            { href: 'https://twitter.com/shreethemes', icon: <UilTwitter width={16} /> },
-                            { href: 'mailto:support@shreethemes.in', icon: <UilYoutube width={16} /> },
+                            { href: 'https://www.youtube.com/@InterlaceBali', icon: <UilYoutube width={16} /> },
                         ].map((social, index) => (
                             <li key={index} className="inline ms-1">
                                 <Link
                                     href={social.href}
                                     target="_blank"
-                                    className="h-8 w-8 inline-flex items-center justify-center text-base font-normal border border-gray-800 rounded-md hover:border-violet-600 hover:bg-violet-600 transition duration-500 ease-in-out"
+                                    className="h-8 w-8 inline-flex items-center justify-center text-base font-normal border border-gray-800 rounded-md hover:border-primary-500 hover:bg-primary-500 transition duration-500 ease-in-out"
                                 >
                                     {social.icon}
                                 </Link>

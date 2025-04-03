@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Link as ScrollLink } from 'react-scroll';
 
 export default function NavbarSmallLight() {
     const [isOpen, setMenu] = useState(false); // Default menu is closed
@@ -89,63 +88,64 @@ export default function NavbarSmallLight() {
                 >
                     <ul className="navbar-nav nav-light font-inter" id="navbar-navlist">
                         <li className="nav-item">
-                            <ScrollLink
-                                to="home"
-                                activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                duration={500}
+                            <a
+                                href="#home"
                                 className="nav-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
                             >
                                 Home
-                            </ScrollLink>
+                            </a>
                         </li>
                         <li className="nav-item">
-                            <ScrollLink
-                                to="features"
-                                activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                duration={500}
+                            <a
+                                href="#about"
                                 className="nav-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
                             >
-                                Services
-                            </ScrollLink>
+                                About Us
+                            </a>
                         </li>
                         <li className="nav-item">
-                            <ScrollLink
-                                to="testi"
-                                activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                duration={500}
+                            <a
+                                href="#services"
                                 className="nav-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
+                                Our Services
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a
+                                href="#our-process"
+                                className="nav-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('our-process')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
+                                Service Stages
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a
+                                href="#testi"
+                                className="nav-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('testi')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
                             >
                                 Review
-                            </ScrollLink>
-                        </li>
-                        <li className="nav-item">
-                            <ScrollLink
-                                to="blog"
-                                spy={true}
-                                smooth={true}
-                                duration={500}
-                                className="nav-link"
-                            >
-                                Blog
-                            </ScrollLink>
-                        </li>
-                        <li className="nav-item">
-                            <ScrollLink
-                                to="contact"
-                                activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                duration={500}
-                                className="nav-link"
-                            >
-                                Contact us
-                            </ScrollLink>
+                            </a>
                         </li>
                     </ul>
                 </div>

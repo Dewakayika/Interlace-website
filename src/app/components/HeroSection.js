@@ -16,9 +16,10 @@ const HeroSection = () => {
 
             <div className="flex gap-4 mt-8 d-block md:hidden">
                 <Link
-                    href="#ServicesCards"
-                    className="btn btn-primary font-medium text-white px-4 py-3 text-sm md:text-lg bg-primary-500 hover:bg-transparant rounded-lg flex gap-4"
-                >
+                    href="https://wa.me/+6285847419359"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary font-medium text-white px-4 py-3 text-sm md:text-lg bg-primary-500 hover:bg-transparant rounded-lg flex gap-4">
                     Book a Consultations <UilArrowCircleRight className="w-5 h-5" />
                 </Link>
             </div>

@@ -46,8 +46,8 @@ const VisionMission = () => {
                     viewport={{ once: false }}
                         className="flex flex-col md:flex-row">
                         <div className="p-4 md:p-8 flex-1">
-                          <div className="flex items-start relative h-full">
-                            <div>
+                          <div className="flex items-center relative h-full">
+                            <div className='justify-center'>
                               <h3 className="text-xl md:text-3xl font-bold md:font-medium mb-4 md:mb-8">Our Vision</h3>
                               <p className="text-gray-600 text-justify font-light text-sm md:text-base">
                                   Our goal is to establish ourselves as the premier provider of career counseling, education, and migration consulting services in Australia, catering to students from all corners of the world, and assisting them in fulfilling their academic and shaping the future.
@@ -55,7 +55,7 @@ const VisionMission = () => {
                             </div>
                           </div>
                         </div>
-                        <Image src="/images/ilustrations/vision.png" className="w-full md:w-auto max-h-[300px] md:max-h-[400px] object-cover rounded-b-2xl md:rounded-r-2xl md:rounded-b-none" width={350} height={350} alt="Skill & Migration Services" priority/>
+                        <Image src="/images/ilustrations/vision.png" className="w-full md:w-auto max-h-[300px] md:max-h-[400px] object-cover rounded-b-2xl md:rounded-2xl" width={350} height={350} alt="Skill & Migration Services" priority/>
                     </motion.div>  
                 </div>
 
@@ -66,9 +66,9 @@ const VisionMission = () => {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     viewport={{ once: false }}
                         className="flex flex-col-reverse md:flex-row">
-                        <Image src="/images/ilustrations/mision.png" className="w-full md:w-auto max-h-[300px] md:max-h-[400px] object-cover rounded-b-2xl md:rounded-l-2xl md:rounded-t-none" width={350} height={350} alt="One stop solution for working oversease" priority/>
+                        <Image src="/images/ilustrations/mision.png" className="w-full md:w-auto max-h-[300px] md:max-h-[400px] object-cover rounded-b-2xl md:rounded-2xl " width={350} height={350} alt="One stop solution for working oversease" priority/>
                         <div className="p-4 md:p-8 flex-1">
-                          <div className="flex items-start relative h-full">
+                          <div className="flex items-center relative h-full">
                             <div>
                               <h3 className="text-xl md:text-3xl font-bold md:font-medium mb-4 md:mb-8">Our Mission</h3>
                               <p className="text-gray-600 text-justify font-light text-sm md:text-base">

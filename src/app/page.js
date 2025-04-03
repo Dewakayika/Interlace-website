@@ -20,31 +20,37 @@ const HeroSection = dynamic(() => import('./components/HeroSection'), { ssr: fal
 
 export default function IndexTwo() {
     return (
-        <>
-            <NavbarSmallLight />    
-            <section className="relative w-full md:h-screen h-screen" id="home">
-                <div className="absolute z-20 left-1/2 md:top-[65%] top-[65%] -translate-x-1/2 -translate-y-1/2 container mx-auto">
-                    <HeroSection />
-                    <StudyForms />
-                </div>
-                <div className="absolute inset-0 bg-slate-950/60 z-10"></div>
-                <ImageSlider />
-            </section>
-            <ServiceCards />
-            <div className=" bg-gray-50">
-                <Information/>
+        <> 
+        < NavbarSmallLight /> <section className="relative w-full md:h-screen h-screen" id="home">
+            <div
+                className="absolute z-20 left-1/2 md:top-[65%] top-[65%] -translate-x-1/2 -translate-y-1/2 container mx-auto">
+                <HeroSection/>
+                <StudyForms/>
             </div>
-            <UniversityLogo />
-            <VisionMission/>
-            <div className=' bg-slate-950'> 
-                <OurProcess/>
-            </div>
+            <div className="absolute inset-0 bg-slate-950/60 z-10"></div>
+            <ImageSlider/>
+        </section>
+        <section id="about">
+            <ServiceCards/>
+        </section>
+
+        <section className=" bg-gray-50" id='services'>
+            <Information/>
+        </section>
+        <UniversityLogo/>
+        <VisionMission/>
+        <section className=' bg-slate-950' id='our-process'>
+            <OurProcess/>
+        </section>
+        <section id="testi">
             <Testimonial/>
-            <div className='bg-gray-50'>
-                <FAQ/>
-            </div>
-            <CTA />
-            <Footer />
-        </>
+        </section>
+
+        <div className='bg-gray-50'>
+            <FAQ/>
+        </div>
+        <CTA/>
+        <Footer/>
+    </>
     )
 }
