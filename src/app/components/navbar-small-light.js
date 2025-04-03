@@ -39,10 +39,10 @@ export default function NavbarSmallLight() {
                             height={28}
                         />
                         <Image
-                            src="/images/logo/interlace-logo-dark.png"
+                            src="/images/logo/interlace-logo-light.png"
                             priority
                             className="l-light w-[156px]"
-                            alt="Interlace Studies Logo"
+                            alt="Interlace Studies Logo dark"
                             width={156}
                             height={28}
                         />
