@@ -22,19 +22,15 @@ const FAQ = () => {
 
     return (
         <section className="container mx-auto py-20 px-4">
-            <div className="container w-[75%] text-center mb-10">
-                
-                    <DotLottieReact src='/images/lottie-animations/cursor-faq.json' className='w-[300px] h-[auto] absolute top-0 left-0' loop autoplay />
-                
-                
-                    <DotLottieReact src='/images/lottie-animations/cursor-questions.json' className='w-[300px] h-[auto] absolute top-0 right-0' loop autoplay />
-                
+            <div className="container md:w-[75%] w-full text-center mb-10">
+                    <DotLottieReact src='/images/lottie-animations/cursor-faq.json' className='w-[300px] h-[auto] absolute top-0 left-0 hidden md:block' loop autoplay />
+                    <DotLottieReact src='/images/lottie-animations/cursor-questions.json' className='w-[300px] h-[auto] absolute md:top-0 md:right-0 top-[-20%] left-[30%' loop autoplay />
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="text-5xl leading-[120%]  font-bold text-gray-800 ">
+                    className="md:text-5xl text-2xl leading-[120%]  font-bold text-gray-800 ">
                     Frequently Asked <span className="text-primary-500">Questions</span>
                 </motion.h2>
                 <motion.p
@@ -42,7 +38,7 @@ const FAQ = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="text-gray-600 mt-4">
+                    className="text-gray-600 mt-4 md:text-base text-sm">
                     Find detailed answers to common inquiries about our services, company policies, and customer support options to help you get the best experience.
                 </motion.p>
             </div>
@@ -59,13 +55,13 @@ const FAQ = () => {
                     >
                         <button
                             onClick={() => toggleFAQ(index)}
-                            className="w-full flex justify-between items-center px-6 py-4 text-left text-gray-800 font-medium focus:outline-none"
+                            className="w-full flex justify-between items-center px-6 py-4 text-left text-gray-800 font-medium focus:outline-none text-sm md:text-lg"
                         >
                             <span>{faq.question}</span>
                             <motion.span 
                                 animate={{ rotate: activeIndex === index ? 180 : 0 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="text-xl"
+                                className="text-xl" 
                             >
                                 +
                             </motion.span>
@@ -82,7 +78,7 @@ const FAQ = () => {
                             }}
                             className="overflow-hidden"
                         >
-                            <div className="px-6 py-4 text-gray-600">
+                            <div className="px-6 py-4 text-gray-600 md:text-base text-sm">
                                 {faq.answer}
                             </div>
                         </motion.div>

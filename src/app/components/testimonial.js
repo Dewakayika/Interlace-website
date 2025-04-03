@@ -104,7 +104,7 @@ export const Testimonial = () => {
     return (
       <div
         ref={ref}
-        className="h-[300vh] pt-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]">
+        className="md:h-[340vh] h-[200vh] pt-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]">
         <Header />
         <motion.div
           style={{
@@ -114,21 +114,27 @@ export const Testimonial = () => {
             opacity,
           }}
         >
-          <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-10">
+          <motion.div className="flex flex-row-reverse space-x-reverse md:space-x-20 mb-10 space-x-0">
             {firstRow.map((product) => (
               <ProductCard product={product} translate={translateX} key={product.title} />
             ))}
           </motion.div>
-          <motion.div className="flex flex-row mb-20 space-x-20">
+          <motion.div className="flex flex-row mb-10 md:space-x-20 space-x-0">
             {secondRow.map((product) => (
               <ProductCard product={product} translate={translateXReverse} key={product.title} />
             ))}
           </motion.div>
-          <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+          <motion.div className="flex flex-row-reverse space-x-reverse md:space-x-20 space-x-0 mb-10">
             {thirdRow.map((product) => (
               <ProductCard product={product} translate={translateX} key={product.title} />
             ))}
           </motion.div>
+          <motion.div className="flex flex-row mb-10 md:space-x-20 space-x-0 ">
+            {secondRow.map((product) => (
+              <ProductCard product={product} translate={translateXReverse} key={product.title} />
+            ))}
+          </motion.div>
+          
         </motion.div>
       </div>
     );
@@ -158,12 +164,12 @@ export const Testimonial = () => {
           y: -20,
         }}
         key={product.title}
-        className="group/product h-80 w-[30rem] relative shrink-0">
+        className="group/product md:h-80 md:w-[30rem] w-[20rem] h-40 relative shrink-0">
           <Image
             src={product.thumbnail}
             height="300"
             width="300"
-            className="object-cover object-left-top absolute h-full w-full inset-0"
+            className="object-cover object-left-top absolute md:h-full md:w-full inset-0 w-60 h-auto"
             alt={product.title}
           />
         <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">

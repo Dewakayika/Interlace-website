@@ -54,116 +54,45 @@ const Information = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className={`rounded-2xl p-12 text-white ${cards[0].background} col-span-1 lg:col-span-2 md:h-[400px] relative overflow-hidden`}>
+                    className={`rounded-2xl md:p-12 md:pb-12 p-5 pb-10 text-white ${cards[0].background} col-span-1 lg:col-span-2 md:h-[400px] relative overflow-hidden`}>
 
                     <div className="flex items-end justify-between align-center h-full">
-                        <div className='w-1/2'> 
-                            <div className="pb-10">
-                                <Image src={cards[0].number} className="w-10" width={400} height={400} alt="Education & Carieer Consultant" />   
+                        <div className='md:w-1/2 w-full mt-52 md:mt-0'> 
+                            <div className="md:pb-10 pb-4">
+                                <Image src={cards[0].number} className="md:w-10 w-7" width={400} height={400} alt="Education & Carieer Consultant" /> 
                             </div>
-                            <div className='gap-4 font-inter'>
-                                <h3 className="text-3xl font-medium mt-2 ">{cards[0].title}</h3>
-                                <p className="mt-4 text-base font-thin">{cards[0].description}</p>
+                            <div className='gap-4 font-inter '>
+                                <h3 className="md:text-3xl text-xl font-medium mt-2 ">{cards[0].title}</h3>
+                                <p className="md:mt-4 mt-2 md:text-base text-xs font-thin text-justify md:text-left">{cards[0].description}</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <DotLottieReact src={cards[0].icon} className='h-[300px] w-auto absolute top-0 right-[-15%] ' loop autoplay />
-                    
+                    <DotLottieReact src={cards[0].icon} className='md:h-[300px] h-[200px] w-auto absolute top-0 md:right-[-22%] lg:right-[-15%] right-[-20%]' loop autoplay />
                 </motion.div>
 
-                {/* Rest of the cards remain unchanged */}
-                {/* Card 2 */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[1].background} md:h-[650px] flex flex-col items-center`}>
+                {cards.slice(1).map((card, index) => (
+                    <motion.div
+                        key={card.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className={`rounded-2xl md:pt-0 md:pb-8 md:px-8 px-5 pb-8 text-white ${card.background} md:h-[650px] flex flex-col items-center`}>
 
-                    <div className="flex flex-col items-center h-full justify-between">
-                        <DotLottieReact src={cards[1].icon} className='h-[300px] w-auto relative' loop autoplay />
-                        <div className="flex flex-col items-left text-left">
-                            <div className="mb-6">
-                            <Image src={cards[1].number} className="w-10" width={400} height={400} alt="Oversease Health Cover" />   
+                        <div className="flex flex-col items-center h-full justify-between">
+                            <DotLottieReact src={card.icon} className='h-[300px] md:top-0 top-[-15%] w-auto relative' loop autoplay />
+                            <div className="flex flex-col items-left text-left">
+                                <div className="md:mb-6 mb-5">
+                                    <Image src={card.number} className="md:w-10 w-7" width={400} height={400} alt={card.title} />   
+                                </div>
+                                <div className='md:space-y-4 space-y-2 font-inter'>
+                                    <h3 className="md:text-3xl text-xl font-medium">{card.title}</h3>
+                                    <p className="md:text-base text-xs font-thin md:text-left text-justify">{card.description}</p>
+                                </div>
                             </div>
-                        <div className='space-y-4 font-inter'>
-                            <h3 className="text-3xl font-medium ">{cards[1].title}</h3>
-                            <p className="text-base font-thin">{cards[1].description}</p>
                         </div>
-                        </div>
-                    </div>
-                </motion.div>
-
-                
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[2].background} md:h-[650px] flex flex-col items-center`}>
-
-                    <div className="flex flex-col items-center h-full justify-between">
-                        <DotLottieReact src={cards[2].icon} className='h-[300px] w-auto relative' loop autoplay />
-                        <div className="flex flex-col items-left text-left">
-                            <div className="mb-6">
-                                <Image src={cards[2].number} className="w-10" width={400} height={400} alt="Visa & Migration Services" />   
-                            </div>
-                        <div className='space-y-4 font-inter'>
-                            <h3 className="text-3xl font-medium">{cards[2].title}</h3>
-                            <p className="text-base font-thin">{cards[2].description}</p>
-                        </div>
-                    </div>
-                </div>
-
-                </motion.div>
-
-                {/* Card 3 */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[3].background} md:h-[650px] flex flex-col items-center`}>
-
-                    <div className="flex flex-col items-center h-full justify-between">
-                        <DotLottieReact src={cards[3].icon} className='h-[300px] w-auto relative' loop autoplay />
-                        <div className="flex flex-col items-left text-left">
-                            <div className="mb-6">
-                            <Image src={cards[3].number} className="w-10" width={400} height={400} alt="IELTS Course Preparation" />   
-                            </div>
-                        <div className='space-y-4 font-inter'>
-                            <h3 className="text-3xl font-medium ">{cards[3].title}</h3>
-                            <p className="text-base font-thin">{cards[3].description}</p>
-                        </div>
-                        </div>
-                    </div>
-                </motion.div>
-
-                
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className={`rounded-2xl pt-0 pb-8 px-8  text-white ${cards[4].background} md:h-[650px] flex flex-col items-center`}>
-
-                    <div className="flex flex-col items-center h-full justify-between">
-                        <DotLottieReact src={cards[4].icon} className='h-[300px] w-auto relative' loop autoplay />
-                        <div className="flex flex-col items-left text-left">
-                            <div className="mb-6">
-                            <Image src={cards[4].number} className="w-10" width={400} height={400} alt="Skill Assesment for Accoupation in Australia" />   
-                            </div>
-                        <div className='space-y-4 font-inter'>
-                            <h3 className="text-3xl font-medium">{cards[4].title}</h3>
-                            <p className="text-base font-thin">{cards[4].description}</p>
-                        </div>
-                    </div>
-                </div>
-
-                </motion.div>
-
-                
+                    </motion.div>
+                ))}
             </div>
         </section>
     );

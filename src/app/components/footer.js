@@ -29,9 +29,7 @@ export default function Footer() {
                     <ul className="list-none footer-list text-center mt-8">
                         {['Services', 'About Us', 'Blogs', 'Team', 'Contact Us'].map((item, index) => (
                             <li key={index} className="inline px-2">
-                                <Link
-                                    href={`/${item.toLowerCase().replace(/\s+/g, '')}`}
-                                    className="text-gray-300 hover:text-gray-400 duration-500 ease-in-out">
+                                <Link href="#" className="text-gray-300 hover:text-gray-400 duration-500 ease-in-out">
                                     {item}
                                 </Link>
                             </li>

@@ -27,34 +27,24 @@ export default function IndexTwo() {
                     <HeroSection />
                     <StudyForms />
                 </div>
-                
                 <div className="absolute inset-0 bg-slate-950/60 z-10"></div>
                 <ImageSlider />
-                
             </section>
-            
             <ServiceCards />
-
             <div className=" bg-gray-50">
                 <Information/>
             </div>
-         
-                
             <UniversityLogo />
             <VisionMission/>
             <div className=' bg-slate-950'> 
                 <OurProcess/>
             </div>
-
             <Testimonial/>
-
             <div className='bg-gray-50'>
                 <FAQ/>
             </div>
-
             <CTA />
             <Footer />
-            
         </>
     )
 }
