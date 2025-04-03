@@ -18,9 +18,6 @@ const Testimonial = dynamic(() => import('./components/testimonial'), { ssr: fal
 const ImageSlider = dynamic(() => import('./components/ImageSlider'), { ssr: false });
 const HeroSection = dynamic(() => import('./components/HeroSection'), { ssr: false });
 
-
-import 'react-modal-video/css/modal-video.css'
-
 export default function IndexTwo() {
     return (
         <>
