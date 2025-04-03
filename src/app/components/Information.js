@@ -67,7 +67,7 @@ const Information = () => {
                             </div>
                         </div>
                     </div>
-                    <DotLottieReact src={cards[0].icon} className='md:h-[300px] h-[200px] w-auto absolute top-0 md:right-[-22%] lg:right-[-15%] right-[-20%]' loop autoplay />
+                    <DotLottieReact src={cards[0].icon} className='md:h-[300px] h-[200px] w-auto absolute top-0 md:right-[-22%] lg:right-[-15%] right-[-30%]' loop autoplay />
                 </motion.div>
 
                 {cards.slice(1).map((card, index) => (
