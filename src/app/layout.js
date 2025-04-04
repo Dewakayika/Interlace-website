@@ -4,6 +4,7 @@ import './assets/css/materialdesignicons.min.css'
 import { Inter , Lexend } from 'next/font/google'
 import ContactPopup from './components/ContactPopup'
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       <body  className={`${inter.variable} ${lexend.variable} font-inter text-base text-slate-950 dark:text-white dark:bg-slate-900`}>
         {children}
         <Analytics />
+        <SpeedInsights />
         <ContactPopup />
       </body>
     </html>
