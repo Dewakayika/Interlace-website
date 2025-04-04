@@ -21,7 +21,9 @@ const lexend = Lexend({
 export const metadata = {
   title: 'Interlace Studies',
   description: 'Your Gateway to Global Education and Migration',
+  google: '_yvoOG6WHXKq8t7yi',
 }
+
 
 export default function RootLayout({ children }) {
   return (
