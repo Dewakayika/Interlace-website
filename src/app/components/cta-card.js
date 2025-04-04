@@ -41,14 +41,14 @@ const CTACard = () => {
 
                             <h2
                                 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight md:text-left text-center">
-                                Ready to start your
-                                <br className="hidden sm:block"/>
+                                Ready to start your 
+                                <br className="hidden sm:block"/>{" "}
                                 <span className="text-white">journey in Australia?</span>
                             </h2>
                             <p
                                 className="mt-4 text-base sm:text-lg text-white/80 md:text-left text-justify">
                                 We are here to help you achieve your dreams of studying and migrating in
-                                Australia. Book a consultation now and lets start your journey together.
+                                Australia. Book a consultation now and let`s start your journey together.
                             </p>
                             <motion.a
                                 href="https://wa.me/6285847419359"
