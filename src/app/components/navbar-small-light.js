@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function NavbarSmallLight() {
-    const [isOpen, setMenu] = useState(false); // Default menu is closed
-    const [isSticky, setSticky] = useState(false); // Track sticky navbar state
+    const [isOpen, setMenu] = useState(false);
+    const [isSticky, setSticky] = useState(false); 
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -14,7 +14,7 @@ export default function NavbarSmallLight() {
             };
 
             window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll); // Cleanup listener
+            return () => window.removeEventListener('scroll', handleScroll);
         }
     }, []);
 
@@ -28,7 +28,7 @@ export default function NavbarSmallLight() {
                 {/* Logo */}
                 <Link href="/" className="navbar-brand md:me-8">
                     {/* Desktop Logo */}
-                    <span className="hidden md:inline-block dark:hidden">
+                    <span className="sm:inline-block hidden">
                         <Image
                             src="/images/logo/interlace-logo-light.png"
                             priority
@@ -47,7 +47,7 @@ export default function NavbarSmallLight() {
                         />
                     </span>
                     {/* Mobile Logo */}
-                    <span className="md:hidden dark:hidden">
+                    <span className="sm:hidden dark:hidden">
                         <Image
                             src="/images/logo/interlace-logo-light.png"
                             priority
@@ -57,7 +57,7 @@ export default function NavbarSmallLight() {
                             height={18}
                         />
                         <Image
-                            src="/images/logo/interlace-logo-dark.png"
+                            src="/images/logo/interlace-logo-dark.svg"
                             priority
                             className="l-light w-[100px]"
                             alt="Interlace Studies Logo"
@@ -88,16 +88,11 @@ export default function NavbarSmallLight() {
                 >
                     <ul className="navbar-nav nav-light font-inter" id="navbar-navlist">
                         <li className="nav-item">
-                            <a
-                                href="#home"
-                                className="nav-link"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                            >
+                            <Link
+                                href="/"
+                                className="nav-link">
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a
@@ -112,16 +107,12 @@ export default function NavbarSmallLight() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a
-                                href="#services"
+                            <Link
+                                href="/services"
                                 className="nav-link"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                                }}
                             >
                                 Our Services
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a

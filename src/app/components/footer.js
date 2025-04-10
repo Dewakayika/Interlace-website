@@ -2,10 +2,10 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import { UilLinkedin, UilFacebook, UilInstagram, UilTwitter, UilYoutube } from '@iconscout/react-unicons';
+import { Instagram, Youtube, LinkSquare, Facebook } from 'iconsax-react';
 
 export default function Footer() {
-    const currentYear = new Date().getFullYear(); // Extracted for reusability
+    const currentYear = new Date().getFullYear();
 
     return (
         <footer className="footer bg-slate-950 text-gray-200">
@@ -38,10 +38,10 @@ export default function Footer() {
                     {/* Social Media Links */}
                     <ul className="list-none flex justify-center md:justify-end mt-4 md:mt-0">
                         {[
-                            { href: 'https://www.linkedin.com/company/interlace-studies-bali/about/', icon: <UilLinkedin width={16} /> },
-                            { href: 'https://www.facebook.com/profile.php?id=61573884216310', icon: <UilFacebook width={16} /> },
-                            { href: 'https://www.instagram.com/interlacestudies.bali/', icon: <UilInstagram width={16} /> },
-                            { href: 'https://www.youtube.com/@InterlaceBali', icon: <UilYoutube width={16} /> },
+                            { href: 'https://www.linkedin.com/company/interlace-studies-bali/about/', icon: <LinkSquare size="12" variant="Bold" /> },
+                            { href: 'https://www.facebook.com/profile.php?id=61573884216310', icon: <Facebook size="12" variant="Bold" /> },
+                            { href: 'https://www.instagram.com/interlacestudies.bali/', icon: <Instagram size="12" variant="Bold" /> },
+                            { href: 'https://www.youtube.com/@InterlaceBali', icon: <Youtube size="12" variant="Bold" /> },
                         ].map((social, index) => (
                             <li key={index} className="inline ms-1">
                                 <Link

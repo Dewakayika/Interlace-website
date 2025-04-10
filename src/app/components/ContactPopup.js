@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { UilPhone, UilWhatsapp, UilTimes } from '@iconscout/react-unicons';
+import { Call, CloseCircle } from 'iconsax-react';
 
 const ContactPopup = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ const ContactPopup = () => {
         {
             title: "IELTS Course",
             subtitle: "+6285847419359",
-            icon: <UilWhatsapp className="w-6 h-6" />,
+            icon: <Call variant="Bold"/>,
             action: "Chat Now",
             type: "whatsapp",
             number: "6285847419359"
@@ -19,7 +19,7 @@ const ContactPopup = () => {
         {
             title: "Consultation",
             subtitle: "+6285847419359",
-            icon: <UilWhatsapp className="w-6 h-6" />,
+            icon: <Call variant="Bold"/>,
             action: "Chat Now",
             type: "whatsapp",
             number: "6285847419359"
@@ -85,24 +85,24 @@ const ContactPopup = () => {
                         animate="visible"
                         exit="exit"
                         whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
+                        whileTap={{ scale: 0.95 }} >
+
                         <div className="relative w-6 h-6">
                             <motion.div
                                 className="absolute inset-0"
                                 initial={{ rotate: 0, opacity: 1 }}
                                 animate={{ rotate: isOpen ? 180 : 0, opacity: isOpen ? 1 : 0 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <UilTimes className="w-6 h-6" />
+                                transition={{ duration: 0.3 }}>
+                            
+                            <CloseCircle variant="Bold"/>
                             </motion.div>
                             <motion.div
                                 className="absolute inset-0"
                                 initial={{ rotate: 0, opacity: 1 }}
                                 animate={{ rotate: isOpen ? -180 : 0, opacity: isOpen ? 0 : 1 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <UilPhone className="w-6 h-6" />
+                                transition={{ duration: 0.3 }}>
+                            
+                            <Call variant="Bold"/>
                             </motion.div>
                         </div>
                     </motion.button>
@@ -117,8 +117,8 @@ const ContactPopup = () => {
                         variants={popupVariants}
                         initial="hidden"
                         animate="visible"
-                        exit="exit"
-                    >
+                        exit="exit">
+                            
                         {contacts.map((contact, index) => (
                             <motion.div
                                 key={index}

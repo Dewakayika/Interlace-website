@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
-import { UilArrowCircleRight } from '@iconscout/react-unicons';
+
 
 const HeroSection = () => {
     return (
@@ -20,7 +20,7 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary font-medium text-white px-4 py-3 text-sm md:text-lg bg-primary-500 hover:bg-transparant rounded-lg flex gap-4">
-                    Book a Consultations <UilArrowCircleRight className="w-5 h-5" />
+                    Book a Consultations 
                 </Link>
             </div>
         </div>

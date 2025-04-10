@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-
 const FAQ = () => {
     const faqs = [
         { question: "How do you define Interlace Studies?", answer: "Interlace Studies is a research-based career and skill-focused educational service provider. Research has been our focus as it has been a scientifically well-accepted way of discovering new knowledge and problem-solving. We truly are problem solvers in the field of Career and Education." },
