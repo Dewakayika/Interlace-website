@@ -22,8 +22,10 @@ const FAQ = () => {
     return (
         <section className="container mx-auto py-20 px-4">
             <div className="container md:w-[75%] w-full text-center mb-10">
-                    <DotLottieReact src='/images/lottie-animations/cursor-faq.json' className='w-[300px] h-[auto] absolute top-0 left-0 hidden md:block' loop autoplay />
-                    <DotLottieReact src='/images/lottie-animations/cursor-questions.json' className='w-[300px] h-[auto] absolute md:top-0 md:right-0 top-0 left-[30%' loop autoplay />
+                <div className='relative'>
+                    <DotLottieReact src='/images/lottie-animations/cursor-faq.json' className='w-[300px]  absolute top-0 left-0 hidden md:block' loop autoplay />
+                    <DotLottieReact src='/images/lottie-animations/cursor-questions.json' className='w-[300px] absolute md:top-0 md:right-0 top-0 left-[30%' loop autoplay />
+                </div>
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

@@ -1,6 +1,4 @@
 import './globals.css'
-import './assets/css/tailwind.css'
-import './assets/css/materialdesignicons.min.css'
 import { Inter , Lexend } from 'next/font/google'
 import ContactPopup from './components/ContactPopup'
 import { Analytics } from '@vercel/analytics/next';

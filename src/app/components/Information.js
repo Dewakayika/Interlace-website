@@ -65,6 +65,10 @@ const Information = () => {
                                 <h3 className="md:text-3xl text-xl font-medium mt-2 ">{cards[0].title}</h3>
                                 <p className="md:mt-4 mt-2 md:text-base text-xs font-thin text-justify md:text-left">{cards[0].description}</p>
                             </div>
+                            
+                            <div className="flex md:mt-10 mt-5">
+                                <a href="/" className="bg-primary-500 hover:bg-primary-400 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">Learn More</a>
+                            </div>
                         </div>
                     </div>
                     <DotLottieReact src={cards[0].icon} className='md:h-[300px] h-[200px] w-auto absolute top-0 md:right-[-22%] lg:right-[-15%] right-[-30%]' loop autoplay />
