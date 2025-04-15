@@ -44,7 +44,7 @@ export default function IndexTwo() {
         <VisionMission/>
         <section className=' bg-slate-950' id='our-process'>
             <OurProcess/>
-        </section>s
+        </section>
         <section id="testi">
             <Testimonial/>
         </section>

@@ -39,9 +39,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isSticky || isOpen ? 'bg-white dark:bg-slate-900 shadow-md' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300  ${isSticky || isOpen ? 'bg-white dark:bg-slate-900 shadow-md' : 'bg-transparent'}`}>
       <div className="container mx-auto">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between ">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <div className="hidden sm:block">
@@ -55,7 +55,7 @@ export default function Navbar() {
                 />
               ) : (
                 <Image
-                  src="/images/logo/interlace-logo-dark.svg"
+                  src="/images/logo/interlace-logo-light.png"
                   alt="Logo Dark"
                   width={156}
                   height={28}
@@ -66,7 +66,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop menu */}
-          <div className="hidden sm:flex items-center space-x-6 relative">
+          <div className="hidden sm:flex items-center space-x-6 relative ">
             <NavLink href="/" isSticky={isSticky}>Home</NavLink>
             <NavLink href="#about" onClick={(e) => handleScrollTo(e, 'about')} isSticky={isSticky}>About Us</NavLink>
             
@@ -74,7 +74,7 @@ export default function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`transition-colors text-base font-medium ${isSticky ? 'text-slate-950 dark:text-white' : 'text-white'} hover:underline`}
+                className={`transition-colors text-base font-medium ${isSticky ? 'text-slate-950 dark:text-white' : 'text-slate-950'} hover:underline`}
               >
                 Our Services
               </button>
@@ -181,7 +181,7 @@ function NavLink({ href, children, onClick, isSticky }) {
     <a
       href={href}
       onClick={onClick}
-      className={`transition-colors text-base font-medium ${isSticky ? 'text-slate-950 dark:text-white hover:underline' : 'text-white hover:underline'}`}
+      className={`transition-colors text-base font-medium ${isSticky ? 'text-slate-950 dark:text-slate-950 hover:underline' : 'text-slate-950 hover:underline'}`}
     >
       {children}
     </a>
@@ -204,7 +204,7 @@ function MobileLink({ href, children, onClick, active }) {
 
 function DropdownItem({ href, title, description }) {
   return (
-    <Link href={href} className="block p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition">
+    <Link href={href} className="block p-2  hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition">
       <h3 className="text-sm font-medium text-gray-900 dark:text-white">{title}</h3>
       <p className="text-xs text-gray-600 dark:text-gray-400">{description}</p>
     </Link>

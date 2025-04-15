@@ -67,7 +67,7 @@ const Information = () => {
                             </div>
                             
                             <div className="flex md:mt-10 mt-5">
-                                <a href="/" className="bg-primary-500 hover:bg-primary-400 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">Learn More</a>
+                                <a href="/services/education-career" className="bg-primary-500 hover:bg-primary-400 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">Learn More</a>
                             </div>
                         </div>
                     </div>

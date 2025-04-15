@@ -8,6 +8,7 @@ const NavbarSmallLight = dynamic(() => import('../../components/navbar-small-lig
 const Footer = dynamic(() => import('../../components/footer'), {ssr: false});
 const StepsVisa = dynamic(() => import('../../components/StepsToGetVisa'), {ssr: false});
 const StudentVisaCost = dynamic(() => import('../../components/StudentVisaCost'), {ssr: false});
+const CTA = dynamic(() => import('../../components/cta-card'), {ssr: false});
 
 
 export default function StudentVisaPage() {
@@ -35,7 +36,7 @@ export default function StudentVisaPage() {
                         <p className="text-sm md:text-lg font-light max-w-xl text-white/80 inline-block">
                             The Student Visa allows you to stay in Australia to study full-time in a recognized education institution. This visa is suitable for international students who wish to pursue their studies in Australia, including primary, secondary, and higher education.
                         </p>
-                        <div className="flex gap-4 mt-8 d-block md:hidden">
+                        <div className="flex gap-4 mt-8 d-block">
                             <a href="step-visa"
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -63,6 +64,8 @@ export default function StudentVisaPage() {
                 <section className=" bg-gray-50 container mx-auto" id='cost-visa'>
                     <StudentVisaCost/>
                 </section>
+
+                <CTA/>
                 
 
                 <Footer/>
