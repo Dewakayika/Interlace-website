@@ -139,8 +139,8 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <NavLink href="#our-process" onClick={(e) => handleScrollTo(e, 'our-process')} isSticky={isSticky}>Service Stages</NavLink>
-            <NavLink href="#testi" onClick={(e) => handleScrollTo(e, 'testi')} isSticky={isSticky}>Review</NavLink>
+            <NavLink href="/galleries" isSticky={isSticky}>Gallery</NavLink>
+            <NavLink href="/blogs" isSticky={isSticky} >Blog</NavLink>
           </div>
 
           {/* Toggle button (mobile) */}

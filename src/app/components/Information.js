@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { ArrowRight } from 'iconsax-react';
 
 const Information = () => {
     const cards = [
@@ -67,7 +68,9 @@ const Information = () => {
                             </div>
                             
                             <div className="flex md:mt-10 mt-5">
-                                <a href="/services/education-career" className="bg-primary-500 hover:bg-primary-400 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">Learn More</a>
+                                <a href="/services/education-career" target="_blank" className="button px-6 py-3 bg-primary-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition  relative">
+                                    Consultat Now <ArrowRight size="20" variant="Bold" className="inline-block ml-2" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -93,6 +96,7 @@ const Information = () => {
                                     <h3 className="md:text-3xl text-xl font-medium">{card.title}</h3>
                                     <p className="md:text-base text-xs font-thin md:text-left text-justify">{card.description}</p>
                                 </div>
+                                
                             </div>
                         </div>
                     </motion.div>
