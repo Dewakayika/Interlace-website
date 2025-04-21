@@ -13,7 +13,7 @@ export default function BlogCard({ blog }) {
         {BlogImage && BlogImage.length > 0 && (
           <div className="relative w-full h-48">
             <Image
-              src={`http://127.0.0.1:1337${BlogImage[0]?.formats?.medium?.url}`}
+              src={`https://interlace-cms.onrender.com${BlogImage[0]?.formats?.medium?.url}`}
               alt={BlogImage[0]?.name || 'Blog Image'}
               fill
               className="object-cover"

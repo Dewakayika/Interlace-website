@@ -1,15 +1,13 @@
-// src/app/galleries/page.js
-
 import dynamic from 'next/dynamic';
 
 const NavbarSmallDark = dynamic(() => import('../components/navbar-small-dark'), { ssr: false });
 const Footer = dynamic(() => import('../components/footer'), { ssr: false });
 const GalleryGrid = dynamic(() => import('../components/GalleryGrid'), { ssr: false });
 
-// Fetch galleries from Strapi
 async function fetchGalleries() {
   try {
-    const response = await fetch('http://127.0.0.1:1337/api/gallleries?populate=*', {
+    const endpoint = '/api/gallleries?populate=*';
+    const response = await fetch(`${process.env.STRAPI_API_URL}${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
@@ -50,10 +48,7 @@ export default async function GalleriesPage() {
     <>
       <NavbarSmallDark />
       <div className="container mx-auto py-8 mt-20">
- 
-
         <GalleryGrid galleries={galleries.data} />
-
       </div>
       <Footer />
     </>

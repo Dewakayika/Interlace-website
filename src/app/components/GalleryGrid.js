@@ -60,7 +60,7 @@ export default function GalleryGrid({ galleries }) {
             {gallery.image && gallery.image.length > 0 && (
               <div className="relative aspect-square">
                 <Image
-                  src={`http://127.0.0.1:1337${gallery.image[0].formats.medium.url}`}
+                  src={`https://interlace-cms.onrender.com${gallery.image[0].formats.medium.url}`}
                   alt={gallery.alt || 'Gallery image'}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
@@ -83,7 +83,7 @@ export default function GalleryGrid({ galleries }) {
             </button>
             <div className="relative w-full h-[400px]">
               <Image
-                src={`http://127.0.0.1:1337${selectedImage.image[0].url}`}
+                src={`https://interlace-cms.onrender.com${selectedImage.image[0].url}`}
                 alt={selectedImage.alt || 'Detailed image'}
                 fill
                 className="object-contain rounded-md"
