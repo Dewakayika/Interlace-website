@@ -8,7 +8,7 @@ const Footer = dynamic(() => import('../../components/footer'), { ssr: false });
 
 async function fetchBlogDetail(documentId) {
   try {
-    const response = await fetch(`http://127.0.0.1:1337/api/blogs/${documentId}?populate=*`, {
+    const response = await fetch(`${process.env.STRAPI_API_URL}/api/blogs/${documentId}?populate=*`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
@@ -41,8 +41,7 @@ export default async function BlogDetail({ params }) {
           <div className="max-w-3xl mx-auto">
             <Link 
               href="/blogs"
-              className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6"
-            >
+              className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
               </svg>
@@ -58,6 +57,7 @@ export default async function BlogDetail({ params }) {
 
 
   const { Tittle, Descriptions, author, Image: BlogImage, createdAt } = blog.data;
+  
 
   return (
     <>
@@ -66,17 +66,14 @@ export default async function BlogDetail({ params }) {
       <article className="container mx-auto px-4 py-8 mt-32">
         <div className="max-w-3xl mx-auto">
 
-          
           <Link 
             href="/blogs"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6"
-          >
+            className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
             </svg>
             Back to Blogs
           </Link>
-
           
           <header className="mb-8">
             <h1 className="text-4xl font-bold mb-4">{Tittle}</h1>
@@ -90,7 +87,7 @@ export default async function BlogDetail({ params }) {
           {BlogImage && BlogImage.length > 0 && (
             <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
               <Image
-                src={`http://127.0.0.1:1337${BlogImage[0]?.url}`}
+                src={`${process.env.STRAPI_API_URL}${BlogImage[0]?.url}`}
                 alt={Tittle}
                 fill
                 className="object-cover"

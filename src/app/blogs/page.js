@@ -6,15 +6,14 @@ const BlogCard = dynamic(() => import('../components/BlogCard'), { ssr: false })
 const NavbarSmallDark = dynamic(() => import('../components/navbar-small-dark'), { ssr: false });
 const Footer = dynamic(() => import('../components/footer'), { ssr: false });
 
-// Function to fetch data using STRAPI API token
 async function fetchBlogs(endpoint) {
   try {
-    const response = await fetch(`http://127.0.0.1:1337${endpoint}`, {
+    const response = await fetch(`${process.env.STRAPI_API_URL}${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
       },
-      cache: 'no-store', // Disable caching for fresh data
+      cache: 'no-store',
     });
 
     if (!response.ok) {
@@ -70,9 +69,8 @@ export default async function BlogsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                         viewport={{ once: false }}
-                        className="text-2xl sm:text-2xl md:text-4xl font-bold mt-2 px-4">
-                          Keep up with latest news and updates at
-                         <br></br> <span className="text-primary-500">Interlace Studies</span>
+                        className="text-2xl sm:text-2xl md:text-4xl font-bold mt-2 px-4 leading-tight">
+                          Keep up with latest <br/> <span className="text-primary-color">news and updates</span>
                     </h2>
                 </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
