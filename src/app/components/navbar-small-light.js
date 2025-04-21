@@ -3,12 +3,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import {ArrowDown2, ArrowUp2} from 'iconsax-react';
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [isOpenMob, setIsOpenMob] = useState(false);
+const [servicesOpen, setServicesOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +42,7 @@ export default function Navbar() {
       setIsOpen(false);
     }
   };
+  
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isSticky || isOpen ? 'bg-white dark:bg-slate-900 shadow-md' : 'bg-transparent'}`}>
@@ -63,6 +69,25 @@ export default function Navbar() {
                 />
               )}
             </div>
+            <div className="block md:hidden">
+              {(isSticky || isOpen) ? (
+                <Image
+                  src="/images/logo/interlace-logo-light.png"
+                  alt="Logo Light"
+                  width={100}
+                  height={28}
+                  priority
+                />
+              ) : (
+                <Image
+                  src="/images/logo/interlace-logo-dark.svg"
+                  alt="Logo Dark"
+                  width={100}
+                  height={28}
+                  priority
+                />
+              )}
+            </div>
           </Link>
 
           {/* Desktop menu */}
@@ -74,9 +99,14 @@ export default function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`transition-colors text-base font-medium ${isSticky ? 'text-slate-950 dark:text-white' : 'text-white'} hover:underline`}
+                className={`transition-colors text-base font-medium ${isSticky ? 'text-slate-950 dark:text-white' : 'text-white'} hover:underline flex items-center justify-center gap-2`}
               >
                 Our Services
+                {isDropdownOpen ? (
+                  <ArrowUp2 variant="Bold" size="16" />
+                ) : (
+                  <ArrowDown2 variant="Bold" size="16" />
+                )}
               </button>
               <AnimatePresence>
                 {isDropdownOpen && (
@@ -85,8 +115,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute left-0 mt-2 w-[500px] bg-white dark:bg-slate-900 shadow-lg rounded-lg p-4 grid grid-cols-2 gap-4"
-                  >
+                    className="absolute left-0 mt-2 w-[500px] bg-white dark:bg-slate-900 shadow-lg rounded-lg p-4 grid grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
                       <p className="text-sm font-semibold text-gray-500 dark:text-white mb-2">Our Services</p>
                       <DropdownItem
@@ -133,7 +162,6 @@ export default function Navbar() {
                         description="Work and travel abroad."
                       />
                     </div>
-
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -164,14 +192,51 @@ export default function Navbar() {
         initial={{ height: 0 }}
         animate={{ height: isOpen ? 'auto' : 0 }}
         transition={{ duration: 0.3 }}
-        className={`sm:hidden overflow-hidden bg-white dark:bg-slate-900`}
+        id="MobNav"
+        className="sm:hidden overflow-hidden bg-white dark:bg-slate-900 container mx-auto"
       >
-        <MobileLink href="/" onClick={() => setIsOpen(false)} active={true}>Home</MobileLink>
+        <MobileLink href="/" onClick={() => setIsOpen(false)}>Home</MobileLink>
         <MobileLink href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About Us</MobileLink>
-        <MobileLink href="/services" onClick={() => setIsOpen(false)}>Our Services</MobileLink>
-        <MobileLink href="#our-process" onClick={(e) => handleScrollTo(e, 'our-process')}>Service Stages</MobileLink>
-        <MobileLink href="#testi" onClick={(e) => handleScrollTo(e, 'testi')}>Review</MobileLink>
+
+        {/* Our Services Toggle Button */}
+        <div className='flex hover:bg-gray-100 justify-center items-center'>
+        <button onClick={() => setServicesOpen(!servicesOpen)}
+          className="w-full text-left px-4 py-3 text-base font-medium text-gray-900 dark:text-white  dark:hover:bg-slate-800 transition-colors">
+          Our Services
+        </button>
+        {servicesOpen ? (
+            <ArrowUp2 variant="Bold" size="16" />
+          ) : (
+            <ArrowDown2 variant="Bold" size="16" />
+          )}
+        </div>
+
+        {/* Dropdown (Mobile) */}
+        <AnimatePresence>
+          {servicesOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="pl-6 pr-4 py-2 flex flex-col gap-1"
+            >
+              <DropdownItem href="/services/education-career" title="Education Consultation" description="Course and uni guidance." />
+              <DropdownItem href="/services/migration-services" title="Migration Services" description="Help with your migration process." />
+              <DropdownItem href="/services/skill-assessment" title="Skill Assessment" description="Evaluate your skills for migration." />
+              <DropdownItem href="/services/english-preparation" title="English Preparation" description="Prep for IELTS, PTE, and more." />
+              <DropdownItem href="/services/overseas-health-cover" title="Overseas Health Cover" description="Health insurance for abroad." />
+              <DropdownItem href="/services/student-visa" title="Student Visa" description="Study visa support." />
+              <DropdownItem href="/services/working-visa" title="Working Visa" description="Work legally overseas." />
+              <DropdownItem href="/services/working-holiday" title="Work & Holiday Visa" description="Work and travel abroad." />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <MobileLink href="/galleries" onClick={() => setIsOpen(false)}>Gallery</MobileLink>
+        <MobileLink href="/blogs" onClick={() => setIsOpen(false)}>Blog</MobileLink>
       </motion.div>
+
     </nav>
   );
 }

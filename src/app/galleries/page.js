@@ -7,7 +7,7 @@ const GalleryGrid = dynamic(() => import('../components/GalleryGrid'), { ssr: fa
 async function fetchGalleries() {
   try {
     const endpoint = '/api/gallleries?populate=*';
-    const response = await fetch(`${process.env.STRAPI_API_URL}${endpoint}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export default async function GalleriesPage() {
     return (
       <>
         <NavbarSmallDark />
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto py-8 h-screen mt-32 justify-center items-center">
           <h1 className="text-3xl font-bold mb-6">Gallery</h1>
           <p className="text-gray-600">No images found. Please try again later.</p>
         </div>
@@ -47,7 +47,7 @@ export default async function GalleriesPage() {
   return (
     <>
       <NavbarSmallDark />
-      <div className="container mx-auto py-8 mt-20">
+      <div className="container mx-auto py-8 mt-20 min-h-screen">
         <GalleryGrid galleries={galleries.data} />
       </div>
       <Footer />

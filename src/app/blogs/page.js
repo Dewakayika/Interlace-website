@@ -8,7 +8,7 @@ const Footer = dynamic(() => import('../components/footer'), { ssr: false });
 
 async function fetchBlogs(endpoint) {
   try {
-    const response = await fetch(`${process.env.STRAPI_API_URL}${endpoint}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export default async function BlogsPage() {
                           Keep up with latest <br/> <span className="text-primary-color">news and updates</span>
                     </h2>
                 </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {sortedBlogs.map((blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))}

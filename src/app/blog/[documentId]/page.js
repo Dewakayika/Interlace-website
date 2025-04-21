@@ -8,7 +8,7 @@ const Footer = dynamic(() => import('../../components/footer'), { ssr: false });
 
 async function fetchBlogDetail(documentId) {
   try {
-    const response = await fetch(`${process.env.STRAPI_API_URL}/api/blogs/${documentId}?populate=*`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/blogs/${documentId}?populate=*`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',

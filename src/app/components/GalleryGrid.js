@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function GalleryGrid({ galleries }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
   // Animation config
   const containerVariants = {
@@ -44,7 +45,7 @@ export default function GalleryGrid({ galleries }) {
                     </motion.h2>
                 </div>
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6"
         variants={containerVariants}
         initial="hidden"
         animate="show">
@@ -60,7 +61,7 @@ export default function GalleryGrid({ galleries }) {
             {gallery.image && gallery.image.length > 0 && (
               <div className="relative aspect-square">
                 <Image
-                  src={`https://interlace-cms.onrender.com${gallery.image[0].formats.medium.url}`}
+                  src={`${API_URL}${gallery.image[0].formats.medium.url}`}
                   alt={gallery.alt || 'Gallery image'}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
@@ -83,7 +84,7 @@ export default function GalleryGrid({ galleries }) {
             </button>
             <div className="relative w-full h-[400px]">
               <Image
-                src={`https://interlace-cms.onrender.com${selectedImage.image[0].url}`}
+                src={`${API_URL}${selectedImage.image[0].url}`}
                 alt={selectedImage.alt || 'Detailed image'}
                 fill
                 className="object-contain rounded-md"
