@@ -63,7 +63,7 @@ export default async function BlogDetail({ params }) {
     <>
       <NavbarSmallDark />
 
-      <article className="container mx-auto px-4 py-8 mt-32">
+      <article className="container mx-auto px-4 py-8 mt-20">
         <div className="max-w-3xl mx-auto">
 
           <Link 
@@ -87,7 +87,7 @@ export default async function BlogDetail({ params }) {
           {BlogImage && BlogImage.length > 0 && (
             <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
               <Image
-                src={`${process.env.STRAPI_API_URL}${BlogImage[0]?.url}`}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${BlogImage[0]?.url}`}
                 alt={Tittle}
                 fill
                 className="object-cover"
