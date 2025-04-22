@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function BlogCard({ blog }) {
   const { id, Tittle, Descriptions, author, Image: BlogImage, documentId, createdAt } = blog;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 
   return (
@@ -15,7 +15,7 @@ export default function BlogCard({ blog }) {
         {BlogImage && BlogImage.length > 0 && (
           <div className="relative w-full h-48">
             <Image
-              src={`${NEXT_PUBLIC_API_URL}${BlogImage[0]?.formats?.medium?.url}`}
+              src={`${API_URL}${BlogImage[0]?.formats?.medium?.url}`}
               alt={BlogImage[0]?.name || 'Blog Image'}
               fill
               className="object-cover"
