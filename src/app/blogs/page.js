@@ -81,11 +81,15 @@ export default async function BlogsPage({ searchParams }) {
             return (
               <div key={blog.sys.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:scale-105 transition-all duration-300">
                 {thumbnail && thumbnail.fields && (
-                  <img
-                    src={thumbnail.fields.file.url.startsWith('http') ? thumbnail.fields.file.url : `https:${thumbnail.fields.file.url}`}
-                    alt={title}
-                    className="w-full h-56 object-cover"
-                  />
+                  <div className="relative w-full h-56">
+                    <Image
+                      src={thumbnail.fields.file.url.startsWith('http') ? thumbnail.fields.file.url : `https:${thumbnail.fields.file.url}`}
+                      alt={title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
                 )}
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">

@@ -3,6 +3,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import NavbarSmallDark from '../../components/navbar-small-dark';
 import Footer from '../../components/footer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import Image from 'next/image';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -52,7 +53,7 @@ export default async function BlogDetailPage({ params }) {
     return (
       <div className="container mx-auto py-8 max-w-2xl">
         <h1 className="text-3xl font-bold mb-4">Blog not found</h1>
-        <p className="text-gray-600">The blog post you're looking for doesn't exist or has been removed.</p>
+        <p className="text-gray-600">The blog post you&apos;re looking for doesn&apos;t exist or has been removed.</p>
       </div>
     );
   }
@@ -66,11 +67,16 @@ export default async function BlogDetailPage({ params }) {
       <NavbarSmallDark />
       <div className="container mx-auto py-16 mt-5 md:mt-14 max-w-6xl min-h-screen">
         {blog.thumbnail && blog.thumbnail.fields && (
-          <img
-            src={blog.thumbnail.fields.file.url.startsWith('http') ? blog.thumbnail.fields.file.url : `https:${blog.thumbnail.fields.file.url}`}
-            alt={blog.title}
-            className="w-full h-72 object-cover rounded-lg mb-6"
-          />
+          <div className="relative w-full h-72 mb-6">
+            <Image
+              src={blog.thumbnail.fields.file.url.startsWith('http') ? blog.thumbnail.fields.file.url : `https:${blog.thumbnail.fields.file.url}`}
+              alt={blog.title}
+              fill
+              className="object-cover rounded-lg"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+            />
+          </div>
         )}
         <div className="mb-4 text-xs text-gray-500 uppercase tracking-wide">
           {blog.category || 'Blog'}{blog.createdDate ? ` • ${new Date(blog.createdDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}` : ''}
@@ -153,11 +159,15 @@ export default async function BlogDetailPage({ params }) {
                 return (
                   <div key={other.sys.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:scale-105 transition-all duration-300">
                     {thumbnail && thumbnail.fields && (
-                      <img
-                        src={thumbnail.fields.file.url.startsWith('http') ? thumbnail.fields.file.url : `https:${thumbnail.fields.file.url}`}
-                        alt={title}
-                        className="w-full h-48 object-cover"
-                      />
+                      <div className="relative w-full h-48">
+                        <Image
+                          src={thumbnail.fields.file.url.startsWith('http') ? thumbnail.fields.file.url : `https:${thumbnail.fields.file.url}`}
+                          alt={title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
                     )}
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">
