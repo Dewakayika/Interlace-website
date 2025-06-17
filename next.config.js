@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['interlace-cms.onrender.com'], // Allow images from interlace-cms.onrender.com
+    domains: [
+      'interlace-cms.onrender.com',
+      'images.ctfassets.net',
+      'downloads.ctfassets.net',
+      'assets.ctfassets.net'
+    ], // Allow images from Contentful and other domains
     unoptimized: false,
     remotePatterns: [
       {
@@ -9,6 +14,21 @@ const nextConfig = {
         hostname: 'interlace-cms.onrender.com',
         pathname: '/uploads/**', // Allow images from /uploads/** path
       },
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        pathname: '/**', // Allow all paths from Contentful
+      },
+      {
+        protocol: 'https',
+        hostname: 'downloads.ctfassets.net',
+        pathname: '/**', // Allow all paths from Contentful
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.ctfassets.net',
+        pathname: '/**', // Allow all paths from Contentful
+      }
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840], // Standard device sizes
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Custom image sizes
