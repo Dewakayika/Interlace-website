@@ -88,8 +88,7 @@ export default function WorkingVisaPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false }}
-                variants={fadeIn}
-            >
+                variants={fadeIn}>
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="flex flex-col md:flex-row items-center gap-12">
                         <motion.div className="md:w-1/2" variants={fadeIn}>
