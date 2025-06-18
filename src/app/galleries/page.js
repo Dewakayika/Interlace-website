@@ -1,54 +1,53 @@
-import dynamic from 'next/dynamic';
+import { createClient } from 'contentful';
+import NavbarSmallDark from '../components/navbar-small-dark';
+import Footer from '../components/footer';
+import GalleryFeed from '../components/GalleryFeed';
 
-const NavbarSmallDark = dynamic(() => import('../components/navbar-small-dark'), { ssr: false });
-const Footer = dynamic(() => import('../components/footer'), { ssr: false });
-const GalleryGrid = dynamic(() => import('../components/GalleryGrid'), { ssr: false });
+const client = createClient({
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+});
 
-async function fetchGalleries() {
-  try {
-    const endpoint = '/api/gallleries?populate=*';
-    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${endpoint}`, {
-      headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching galleries:', error);
-    return null;
-  }
+async function getGalleries() {
+  const res = await client.getEntries({
+    content_type: 'gallery',
+    order: '-fields.createdDate',
+  });
+  return res.items.map(item => ({
+    id: item.sys.id,
+    title: item.fields.title || '',
+    slug: item.fields.slug || '',
+    description: item.fields.description || '',
+    image: item.fields.images || null,
+    createdDate: item.fields.createdDate || '',
+  }));
 }
 
-// Page component
 export default async function GalleriesPage() {
-  const galleries = await fetchGalleries();
-
-  if (!galleries || !galleries.data) {
-    return (
-      <>
-        <NavbarSmallDark />
-        <div className="container mx-auto py-8 h-screen mt-32 justify-center items-center">
-          <h1 className="text-3xl font-bold mb-6">Gallery</h1>
-          <p className="text-gray-600">No images found. Please try again later.</p>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+  const galleries = await getGalleries();
 
   return (
     <>
       <NavbarSmallDark />
-      <div className="container mx-auto py-8 mt-20 min-h-screen">
-        <GalleryGrid galleries={galleries.data} />
+
+      <section>
+          <div className="container mx-auto py-16 h-6 mt-10">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-3xl font-bold mb-4 text-center">Galleries & Activities</h1>
+              <p className="text-gray-600 mb-4 leading-relaxed text-md md:text-lg">
+                Explore our latest galleries and our activities.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+      <div className="container mx-auto py-16 mt-5 md:mt-14 min-h-screen">
+        {galleries.length === 0 ? (
+          <div className="text-center text-gray-500">No galleries found.</div>
+        ) : (
+          <GalleryFeed galleries={galleries} />
+        )}
       </div>
       <Footer />
     </>

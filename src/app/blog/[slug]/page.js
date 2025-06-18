@@ -34,6 +34,113 @@ async function getOtherBlogs(currentSlug) {
     .slice(0, 3);
 }
 
+// Function to get blog data
+async function getBlogData(slug) {
+  try {
+    const entries = await client.getEntries({
+      content_type: 'blogs',
+      'fields.slug': slug,
+      limit: 1,
+    });
+    return entries.items[0];
+  } catch (error) {
+    return null;
+  }
+}
+
+// Generate metadata for the page
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const formattedSlug = slug.replace(/-/g, ' ');
+  const blog = await getBlogData(formattedSlug);
+
+  if (!blog) {
+    return {
+      title: 'Blog Not Found | Interlace Studies',
+      description: 'The requested blog post could not be found.',
+      robots: {
+        index: false,
+        follow: true,
+      },
+    };
+  }
+
+  // Get excerpt from first paragraph or first 160 chars
+  let excerpt = '';
+  if (blog.fields.blogContent && blog.fields.blogContent.content && blog.fields.blogContent.content.length > 0) {
+    const first = blog.fields.blogContent.content.find(c => c.nodeType === 'paragraph');
+    if (first && first.content && first.content[0] && first.content[0].value) {
+      excerpt = first.content[0].value.substring(0, 160) + (first.content[0].value.length > 160 ? '...' : '');
+    }
+  }
+
+  const title = `${blog.fields.title} | Interlace Studies`;
+  const description = excerpt || `Read our article about ${blog.fields.title} on Interlace Studies.`;
+  const canonicalUrl = `https://interlacestudies.id/blog/${slug}`;
+  const imageUrl = blog.fields.thumbnail?.fields?.file?.url.startsWith('http') 
+    ? blog.fields.thumbnail.fields.file.url 
+    : `https:${blog.fields.thumbnail?.fields?.file?.url}`;
+
+  return {
+    title,
+    description,
+    metadataBase: new URL('https://interlacestudies.id'),
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: 'Interlace Studies',
+      type: 'article',
+      publishedTime: blog.fields.createdDate,
+      modifiedTime: blog.sys.updatedAt,
+      authors: [blog.fields.author],
+      tags: blog.fields.category ? [blog.fields.category] : [],
+      images: blog.fields.thumbnail ? [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: blog.fields.title,
+        }
+      ] : [],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      creator: '@interlacestudies',
+      site: '@interlacestudies',
+      images: blog.fields.thumbnail ? [imageUrl] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    verification: {
+      google: 'your-google-site-verification', // Add your Google verification code
+    },
+    category: blog.fields.category || 'Blog',
+    keywords: [
+      blog.fields.category,
+      'Interlace Studies',
+      'Education',
+      'Blog',
+      ...(blog.fields.title.split(' ') || []),
+    ].filter(Boolean),
+  };
+}
+
 export default async function BlogDetailPage({ params }) {
   const { slug } = params;
   const formattedSlug = slug.replace(/-/g, ' ');
