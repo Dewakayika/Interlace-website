@@ -59,8 +59,7 @@ export default function GalleryFeed({ galleries }) {
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >
+        columnClassName="my-masonry-grid_column">
         {paginatedGalleries.map((gallery, idx) => (
           <button
             key={gallery.id}
