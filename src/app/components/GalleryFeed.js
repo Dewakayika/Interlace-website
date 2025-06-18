@@ -7,6 +7,8 @@ export default function GalleryFeed({ galleries }) {
   const [selectedIdx, setSelectedIdx] = useState(null);
   const selected = selectedIdx !== null ? galleries[selectedIdx] : null;
   const touchStartX = useRef(null);
+  const [page, setPage] = useState(1);
+  const [paginatedGalleries, setPaginatedGalleries] = useState(galleries);
 
   const breakpointColumnsObj = {
     default: 3,
@@ -46,6 +48,12 @@ export default function GalleryFeed({ galleries }) {
     touchStartX.current = null;
   };
 
+  useEffect(() => {
+    fetch(`/api/galleries?page=${page}&limit=12`)
+      .then(res => res.json())
+      .then(data => setPaginatedGalleries(data.galleries));
+  }, [page]);
+
   return (
     <>
       <Masonry
@@ -53,7 +61,7 @@ export default function GalleryFeed({ galleries }) {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {galleries.map((gallery, idx) => (
+        {paginatedGalleries.map((gallery, idx) => (
           <button
             key={gallery.id}
             className="w-full mb-3 bg-transparent p-0 border-none focus:outline-none hover:opacity-90 transition duration-200 hover:scale-105"
@@ -153,6 +161,26 @@ export default function GalleryFeed({ galleries }) {
           </div>
         </Modal>
       )}
+
+    <div className="flex items-center justify-center gap-4 mt-6">
+      <button
+        onClick={() => setPage(p => Math.max(1, p - 1))}
+        className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition disabled:opacity-50"
+        disabled={page === 1}>
+        Previous
+      </button>
+      
+      <span className="text-sm font-medium text-gray-800">
+        Page <span className="font-semibold">{page}</span>
+      </span>
+      
+      <button
+        onClick={() => setPage(p => p + 1)}
+        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+        Next
+      </button> 
+    </div>
+
 
       <style jsx global>{`
         .my-masonry-grid {
