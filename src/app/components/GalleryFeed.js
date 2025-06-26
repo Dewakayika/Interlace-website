@@ -49,7 +49,7 @@ export default function GalleryFeed({ galleries }) {
   };
 
   useEffect(() => {
-    fetch(`/api/galleries?page=${page}&limit=12`)
+    fetch(`/api/galleries?page=${page}&limit=24`)
       .then(res => res.json())
       .then(data => setPaginatedGalleries(data.galleries));
   }, [page]);
