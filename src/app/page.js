@@ -23,7 +23,7 @@ export default function IndexTwo() {
         <section className="relative w-full md:h-screen h-screen" id="home">
                 <div className="absolute z-20 left-1/2 md:top-[65%] top-[65%] -translate-x-1/2 -translate-y-1/2 container mx-auto">
             <HeroSection/>
-            <StudyForms/>
+            {/* <StudyForms/> */}
         </div>
         <div className="absolute inset-0 bg-slate-950/60 z-10"></div>
         <ImageSlider/>

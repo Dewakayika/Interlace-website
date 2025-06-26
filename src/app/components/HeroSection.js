@@ -1,6 +1,8 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
+// Icons from iconsax
+import { ArrowRight } from 'iconsax-react';
 
 
 const HeroSection = () => {
@@ -14,13 +16,19 @@ const HeroSection = () => {
                 Interlace Studies is a leading education and migration consultancy that helps individuals achieve their dreams of studying and migrating in Australia.
             </p>
 
-            <div className="flex gap-4 mt-8 d-block md:hidden">
+            <div className="flex gap-4 mt-8 d-block">
                 <Link
                     href="https://wa.me/+6285847419359"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary font-medium text-white px-4 py-3 text-sm md:text-lg bg-primary-500 hover:bg-transparant rounded-lg flex gap-4">
+                    className="btn btn-primary items-center justify-center font-medium text-white px-4 py-3 text-sm md:text-lg bg-primary-500 hover:bg-transparant rounded-lg flex gap-4  hover:text-primary-500 hover:bg-white hover:scale-105 transition-all duration-300">
                     Book a Consultations 
+
+                    {/* Arrow Right Icon */}
+                    <div className="flex items-center justify-center bg-white rounded-full p-1 text-primary-500">   
+                        <ArrowRight className="w-4 h-4" />
+                    </div>
+
                 </Link>
             </div>
         </div>
