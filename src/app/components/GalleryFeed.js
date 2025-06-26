@@ -54,6 +54,7 @@ export default function GalleryFeed({ galleries }) {
       .then(data => setPaginatedGalleries(data.galleries));
   }, [page]);
 
+  
   return (
     <>
       <Masonry
