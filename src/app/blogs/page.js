@@ -53,7 +53,6 @@ export default async function BlogsPage({ searchParams }) {
   return (
     <>
       <NavbarSmallDark />
-
       {/* hero section bg image*/}
       <section>
         <div className="container mx-auto py-16 h-6 mt-10">
