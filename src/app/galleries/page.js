@@ -1,34 +1,10 @@
 import NavbarSmallDark from '../components/navbar-small-dark';
 import Footer from '../components/footer';
 import GalleryClient from '../components/GalleryFeed';
-import { createClient } from 'contentful';
 
 // Force dynamic rendering to prevent caching issues
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
-
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  environment: 'master',
-});
-
-async function getGalleries() {
-  const res = await client.getEntries({
-    content_type: 'gallery',
-    order: '-fields.createdDate',
-    // Add cache-busting to ensure fresh data
-    'sys.updatedAt[gte]': new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-  });
-  return res.items.map(item => ({
-    id: item.sys.id,
-    title: item.fields.title || '',
-    slug: item.fields.slug || '',
-    description: item.fields.description || '',
-    image: item.fields.images || null,
-    createdDate: item.fields.createdDate || '',
-  }));
-}
 
 // Add metadata with cache control headers
 export async function generateMetadata() {
@@ -44,7 +20,6 @@ export async function generateMetadata() {
 }
 
 export default async function GalleriesPage() {
-  const galleries = await getGalleries();
   return (
     <>
       <NavbarSmallDark />
@@ -59,7 +34,7 @@ export default async function GalleriesPage() {
         </div>
       </section>
       <div className="container mx-auto py-16 mt-5 md:mt-14 min-h-screen">
-        <GalleryClient galleries={galleries} />
+        <GalleryClient galleries={[]} />
       </div>
       <Footer />
     </>
