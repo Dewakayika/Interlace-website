@@ -3,6 +3,10 @@ import Footer from '../components/footer';
 import GalleryClient from '../components/GalleryFeed';
 import { createClient } from 'contentful';
 
+// Force dynamic rendering to prevent caching issues
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -13,6 +17,8 @@ async function getGalleries() {
   const res = await client.getEntries({
     content_type: 'gallery',
     order: '-fields.createdDate',
+    // Add cache-busting to ensure fresh data
+    'sys.updatedAt[gte]': new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
   });
   return res.items.map(item => ({
     id: item.sys.id,
@@ -22,6 +28,19 @@ async function getGalleries() {
     image: item.fields.images || null,
     createdDate: item.fields.createdDate || '',
   }));
+}
+
+// Add metadata with cache control headers
+export async function generateMetadata() {
+  return {
+    title: 'Galleries & Activities - Interlace Studies',
+    description: 'Explore our latest galleries and activities',
+    other: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
+  };
 }
 
 export default async function GalleriesPage() {
