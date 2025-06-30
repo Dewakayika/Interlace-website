@@ -59,7 +59,7 @@ export default async function BlogsPage({ searchParams }) {
         <div className="container mx-auto py-16 h-6 mt-10">
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-3xl font-bold mb-4 text-center">Articles & Blogs</h1>
-            <p className="text-gray-600 mb-4 leading-relaxed">
+            <p className="text-gray-600 mb-4 text-sm text-center md:text-md leading-relaxed">
               Stay updated with the latest news and insights from our team.
             </p>
           </div>
