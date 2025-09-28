@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter, Lexend } from 'next/font/google'
 import ContactPopup from './components/ContactPopup'
+import StructuredData from './components/StructuredData'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
@@ -17,9 +18,32 @@ const lexend = Lexend({
 })
 
 export const metadata = {
-  title: 'Interlace Studies',
-  description: 'Your Gateway to Global Education and Migration',
+  title: 'Interlace Studies Bali - Konsultan Pendidikan & Migrasi Australia Terpercaya',
+  description: 'One stop service untuk studi dan kerja di Australia. Konsultan pendidikan terpercaya di Bali dengan tim berpengalaman. Bimbingan lengkap dari pemilihan kursus, visa, hingga penempatan kerja di Australia.',
+  keywords: 'konsultan pendidikan Australia, studi di Australia, kerja di Australia, visa Australia, migrasi Australia, Interlace Studies Bali, konsultan migrasi, pendidikan luar negeri, working holiday visa, student visa Australia',
   google: '_yvoOG6WHXKq8t7yi', // pastikan ini sesuai kode verifikasi dari Google
+  openGraph: {
+    title: 'Interlace Studies Bali - Konsultan Pendidikan & Migrasi Australia',
+    description: 'One stop service untuk studi dan kerja di Australia. Konsultan pendidikan terpercaya di Bali dengan tim berpengalaman.',
+    url: 'https://www.interlacestudies.id',
+    siteName: 'Interlace Studies',
+    images: [
+      {
+        url: 'https://www.interlacestudies.id/images/logo-dark.png',
+        width: 1200,
+        height: 630,
+        alt: 'Interlace Studies Bali - Konsultan Pendidikan Australia',
+      },
+    ],
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Interlace Studies Bali - Konsultan Pendidikan & Migrasi Australia',
+    description: 'One stop service untuk studi dan kerja di Australia. Konsultan pendidikan terpercaya di Bali.',
+    images: ['https://www.interlacestudies.id/images/logo-dark.png'],
+  },
 }
 
 export default function RootLayout({ children }) {
@@ -44,6 +68,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.variable} ${lexend.variable} font-inter text-base text-slate-950 dark:text-white dark:bg-slate-900`}>
+        <StructuredData />
         {children}
         <Analytics />
         <SpeedInsights />

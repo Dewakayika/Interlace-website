@@ -15,6 +15,7 @@ const OurProcess = dynamic(() => import('./components/our-process'), {ssr: false
 const Testimonial = dynamic(() => import('./components/testimonial'), {ssr: false});
 const ImageSlider = dynamic(() => import('./components/ImageSlider'), {ssr: false});
 const HeroSection = dynamic(() => import('./components/HeroSection'), {ssr: false});
+const RelatedLinks = dynamic(() => import('./components/RelatedLinks'), {ssr: false});
 
 export default function IndexTwo() {
     return (
@@ -52,6 +53,7 @@ export default function IndexTwo() {
         <section className='bg-gray-50'>
             <FAQ/>
         </section>
+        <RelatedLinks/>
         <CTA/>
         <Footer/>
     </>
