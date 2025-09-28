@@ -30,6 +30,18 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="_yvoOG6WHXKq8t7yivEfq89Yoh_q7BdebyWrUSGqZV8"
         />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-99XSBB3LG3"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-99XSBB3LG3');
+            `,
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${lexend.variable} font-inter text-base text-slate-950 dark:text-white dark:bg-slate-900`}>
         {children}
