@@ -61,10 +61,10 @@ Sebelum memulai, pastikan Anda telah menginstall:
 ### 1. Clone Repository
 ```bash
 # Clone repository dari GitHub
-git clone https://github.com/yourusername/ovaxo-nextjs.git
+git clone https://github.com/Dewakayika/Interlace-website.git
 
 # Masuk ke direktori project
-cd ovaxo-nextjs
+cd interlace-website
 ```
 
 ### 2. Install Dependencies
