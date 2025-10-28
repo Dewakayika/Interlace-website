@@ -345,25 +345,6 @@ export default async function BlogDetailPage({ params }) {
                             </svg>
                           </div>
                         )}
-
-                        {/* <div className="p-4 flex flex-col flex-grow">
-                          <h4 className="text-sm font-medium mb-2 truncate">{name}</h4>
-                          <p className="text-xs text-gray-500 mb-4">{contentType || 'File'}</p>
-                          {asset?.fields?.description && (
-                            <p className="text-sm text-gray-700 mb-4 line-clamp-2">{asset.fields.description}</p>
-                          )}
-                          <div className="mt-auto">
-                            {youtubeUrl ? (
-                              <span className="inline-block px-3 py-2 bg-red-600 text-white rounded-md">
-                                Watch Video
-                              </span>
-                            ) : (
-                              <span className="inline-block px-3 py-2 bg-blue-600 text-white rounded-md">
-                                Download
-                              </span>
-                            )}
-                          </div>
-                        </div> */}
                       </div>
                     );
 
