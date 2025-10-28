@@ -5,6 +5,37 @@ import Footer from '../../components/footer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import Image from 'next/image';
 
+// Helper to generate YouTube embed URL from either an ID or various URL forms
+function getYouTubeEmbedUrl(input) {
+  if (!input) return null;
+  const str = String(input).trim();
+  // If already an embed URL or id
+  const idMatch = str.match(/(?:v=|\/)([0-9A-Za-z_-]{11})(?:[&?#]|$)/);
+  if (idMatch && idMatch[1]) return `https://www.youtube.com/embed/${idMatch[1]}`;
+  // short youtu.be links
+  const shortMatch = str.match(/youtu\.be\/([0-9A-Za-z_-]{11})/);
+  if (shortMatch && shortMatch[1]) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+  // if string looks like an id (11 chars)
+  if (/^[0-9A-Za-z_-]{11}$/.test(str)) return `https://www.youtube.com/embed/${str}`;
+  // fallback: return null
+  return null;
+}
+
+// Helper to extract YouTube URL from text (description)
+function extractYouTubeUrl(text) {
+  if (!text) return null;
+  const str = String(text).trim();
+  // Look for YouTube URLs
+  const urlMatch = str.match(/(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([0-9A-Za-z_-]{11})/);
+  if (urlMatch) {
+    const videoId = urlMatch[4];
+    return `https://www.youtube.com/watch?v=${videoId}`;
+  }
+  // If just an ID
+  if (/^[0-9A-Za-z_-]{11}$/.test(str)) return `https://www.youtube.com/watch?v=${str}`;
+  return null;
+}
+
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -28,10 +59,10 @@ const renderOptions = {
 // Fetch other blogs for the 'Other Blogs' section
 async function getOtherBlogs(currentSlug) {
   const entries = await client.getEntries({ content_type: 'blogs' });
-  // Exclude the current blog by slug and limit to 3 blogs
+  // Exclude the current blog by slug and limit to 2 blogs
   return entries.items
     .filter(item => item.fields.slug !== currentSlug)
-    .slice(0, 3);
+    .slice(0, 2);
 }
 
 // Function to get blog data
@@ -256,13 +287,118 @@ export default async function BlogDetailPage({ params }) {
           </div>
         </div>
 
+          {/* YouTube Video (if present) */}
+          {blog.youtubeVideo && (
+            (() => {
+              const embedUrl = getYouTubeEmbedUrl(blog.youtubeVideo);
+              if (!embedUrl) return null;
+              return (
+                <div className="mb-12">
+                  <h3 className="text-lg font-semibold mb-4">Video</h3>
+                  <div className="w-full" style={{ position: 'relative', paddingTop: '56.25%' }}>
+                    <iframe
+                      src={embedUrl}
+                      title={blog.title + ' - video'}
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen 
+                    />
+                  </div>
+                </div>
+              );
+            })()
+          )}
+
+          {/* Attachments / Files (if present) - render as 3-column cards */}
+          {blog.attachment && Array.isArray(blog.attachment) && blog.attachment.length > 0 && (
+            <div className="mb-12">
+              <h3 className="text-lg font-semibold mb-6">Attachments</h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {blog.attachment.map((asset) => {
+                  const file = asset?.fields?.file;
+                  if (!file) return null;
+                  const url = file.url && file.url.startsWith('http') ? file.url : `https:${file.url}`;
+                  const name = asset?.fields?.title || file.fileName || (file.url ? file.url.split('/').pop() : 'Download');
+                  const contentType = file.contentType || '';
+                  const isImage = contentType.startsWith('image/');
+
+                  return (() => {
+                    const youtubeUrl = extractYouTubeUrl(asset?.fields?.description);
+                    const CardContent = (
+                      <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        {isImage ? (
+                          <div className="relative w-full h-40">
+                            <Image
+                              src={url}
+                              alt={name}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center h-40 bg-gray-50">
+                            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17a2 2 0 01-2-2V7a2 2 0 012-2h6l6 6v6a2 2 0 01-2 2H7z"></path>
+                            </svg>
+                          </div>
+                        )}
+
+                        {/* <div className="p-4 flex flex-col flex-grow">
+                          <h4 className="text-sm font-medium mb-2 truncate">{name}</h4>
+                          <p className="text-xs text-gray-500 mb-4">{contentType || 'File'}</p>
+                          {asset?.fields?.description && (
+                            <p className="text-sm text-gray-700 mb-4 line-clamp-2">{asset.fields.description}</p>
+                          )}
+                          <div className="mt-auto">
+                            {youtubeUrl ? (
+                              <span className="inline-block px-3 py-2 bg-red-600 text-white rounded-md">
+                                Watch Video
+                              </span>
+                            ) : (
+                              <span className="inline-block px-3 py-2 bg-blue-600 text-white rounded-md">
+                                Download
+                              </span>
+                            )}
+                          </div>
+                        </div> */}
+                      </div>
+                    );
+
+                    if (youtubeUrl) {
+                      return (
+                        <a
+                          key={asset?.sys?.id || url}
+                          href={youtubeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          {CardContent}
+                        </a>
+                      );
+                    } else {
+                      return (
+                        <div key={asset?.sys?.id || url}>
+                          {CardContent}
+                        </div>
+                      );
+                    }
+                  })();
+                })}
+              </div>
+            </div>
+          )}
+
         {/* Other Blogs Section */}
         {otherBlogs.length > 0 && (
           <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6">Other Blogs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {otherBlogs.map((other) => {
-                const { title, author, thumbnail, createdDate, slug, category } = other.fields;
+                const { title, author, thumbnail, createdDate, slug, category} = other.fields;
                 return (
                   <div key={other.sys.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:scale-105 transition-all duration-300">
                     {thumbnail && thumbnail.fields && (
