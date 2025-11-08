@@ -53,7 +53,6 @@ export default function IndexTwo() {
         <section className='bg-gray-50'>
             <FAQ/>
         </section>
-        <RelatedLinks/>
         <CTA/>
         <Footer/>
     </>
