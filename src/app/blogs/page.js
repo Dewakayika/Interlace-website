@@ -3,14 +3,29 @@ import Image from 'next/image';
 // import dynamic from 'next/dynamic';
 import { createClient } from 'contentful';
 import Link from 'next/link';
+import { headers } from 'next/headers';
 import NavbarSmallDark from '../components/navbar-small-dark';
 import Footer from '../components/footer';
+import LanguageFilter from './LanguageFilter';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
   environment: 'master',
 });
+
+// Function to detect language from request headers
+function detectLanguage(headersList) {
+  const acceptLanguage = headersList.get('accept-language') || '';
+  
+  // Check if Indonesian is preferred
+  if (acceptLanguage.toLowerCase().includes('id') || acceptLanguage.toLowerCase().includes('id-id')) {
+    return 'Indonesia';
+  }
+  
+  // Default to English
+  return 'English';
+}
 
 async function getBlogs() {
   const entries = await client.getEntries({ content_type: 'blogs' });
@@ -29,7 +44,6 @@ async function getBlogs() {
 export default async function BlogsPage({ searchParams }) {
   const entries = await client.getEntries({ content_type: 'blogs' });
   const blogs = entries.items;
-  console.log('Contentful blogs:', blogs);
 
   if (blogs.length === 0) {
     return (
@@ -40,7 +54,27 @@ export default async function BlogsPage({ searchParams }) {
     );
   }
 
-  const sortedBlogs = blogs.sort((a, b) => new Date(b.sys.createdAt) - new Date(a.sys.createdAt));
+  // Auto-detect language from headers if not explicitly set
+  const headersList = headers();
+  const detectedLanguage = detectLanguage(headersList);
+  
+  // Use URL param if set, otherwise use detected language
+  const urlLanguage = searchParams?.language;
+  const selectedLanguage = urlLanguage || detectedLanguage;
+  let filteredBlogs = blogs;
+  
+  // Filter blogs based on selected language
+  if (selectedLanguage && selectedLanguage !== 'All') {
+    filteredBlogs = blogs.filter(blog => {
+      const articleLanguage = blog.fields.articleLanguage;
+      if (Array.isArray(articleLanguage)) {
+        return articleLanguage.includes(selectedLanguage);
+      }
+      return false;
+    });
+  }
+
+  const sortedBlogs = filteredBlogs.sort((a, b) => new Date(b.sys.createdAt) - new Date(a.sys.createdAt));
   
   // Pagination logic
   const itemsPerPage = 15;
@@ -65,7 +99,10 @@ export default async function BlogsPage({ searchParams }) {
         </div>
       </section>
 
-      <div className="container mx-auto py-16 min-h-screen mt-10">  
+      <div className="container mx-auto py-16 min-h-screen mt-10">
+        {/* Language Filter Dropdown */}
+        <LanguageFilter selectedLanguage={selectedLanguage} detectedLanguage={detectedLanguage} />
+  
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentBlogs.map((blog) => {
             const { title, author, thumbnail, createdDate, slug, blogContent, category } = blog.fields;
@@ -108,12 +145,20 @@ export default async function BlogsPage({ searchParams }) {
           })}
         </div>
 
+        {/* Results count */}
+        <div className="text-center mb-6 text-sm text-gray-60 mt-4">
+          Showing {sortedBlogs.length} {sortedBlogs.length === 1 ? 'article' : 'articles'}
+          {selectedLanguage && selectedLanguage !== 'All' && (
+            <span> in <strong>{selectedLanguage}</strong></span>
+          )}
+        </div>
+
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center space-x-2 mt-8">
+          <div className="flex justify-center items-center space-x-2 mt-3">
             {currentPage > 1 && (
               <Link
-                href={`/blogs?page=${currentPage - 1}`}
+                href={`/blogs?page=${currentPage - 1}${urlLanguage ? `&language=${urlLanguage}` : ''}`}
                 className="px-4 py-2 border rounded-md hover:bg-gray-100 transition-colors"
               >
                 Previous
@@ -123,7 +168,7 @@ export default async function BlogsPage({ searchParams }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <Link
                 key={page}
-                href={`/blogs?page=${page}`}
+                href={`/blogs?page=${page}${urlLanguage ? `&language=${urlLanguage}` : ''}`}
                 className={`px-4 py-2 border rounded-md ${
                   currentPage === page
                     ? 'bg-primary-600 text-white'
@@ -136,7 +181,7 @@ export default async function BlogsPage({ searchParams }) {
 
             {currentPage < totalPages && (
               <Link
-                href={`/blogs?page=${currentPage + 1}`}
+                href={`/blogs?page=${currentPage + 1}${urlLanguage ? `&language=${urlLanguage}` : ''}`}
                 className="px-4 py-2 border rounded-md hover:bg-gray-100 transition-colors"
               >
                 Next

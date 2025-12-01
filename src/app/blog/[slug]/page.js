@@ -53,6 +53,25 @@ const renderOptions = {
     [INLINES.HYPERLINK]: (node, children) => (
       <a href={node.data.uri} className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">{children}</a>
     ),
+    // Table support
+    [BLOCKS.TABLE]: (node, children) => (
+      <div className="overflow-x-auto mb-8">
+        <table className="min-w-full border-collapse border border-gray-300">
+          <tbody>{children}</tbody>
+        </table>
+      </div>
+    ),
+    [BLOCKS.TABLE_ROW]: (node, children) => (
+      <tr className="border-b border-gray-300">{children}</tr>
+    ),
+    [BLOCKS.TABLE_HEADER_CELL]: (node, children) => (
+      <th className="border border-gray-300 px-4 py-2 bg-gray-100 font-semibold text-left">
+        {children}
+      </th>
+    ),
+    [BLOCKS.TABLE_CELL]: (node, children) => (
+      <td className="border border-gray-300 px-4 py-2">{children}</td>
+    ),
   },
 };
 
