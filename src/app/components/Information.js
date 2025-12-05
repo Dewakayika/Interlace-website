@@ -69,7 +69,7 @@ const Information = () => {
                             
                             <div className="flex md:mt-10 mt-5">
                                 <a href="/services/education-career" target="_blank" className="button px-6 py-3 bg-primary-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition  relative">
-                                    Consultat Now <ArrowRight size="20" variant="Bold" className="inline-block ml-2" />
+                                Consult Now <ArrowRight size="20" variant="Bold" className="inline-block ml-2" />
                                 </a>
                             </div>
                         </div>
