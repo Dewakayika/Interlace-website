@@ -22,7 +22,7 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary items-center justify-center font-medium text-white px-4 py-3 text-sm md:text-lg bg-primary-500 hover:bg-transparant rounded-lg flex gap-4  hover:text-primary-500 hover:bg-white hover:scale-105 transition-all duration-300">
-                    Book a Consultations 
+                    Book a Consultation
                     {/* Arrow Right Icon */}
                     <div className="flex items-center justify-center bg-white rounded-full p-1 text-primary-500">   
                         <ArrowRight className="w-4 h-4" />
