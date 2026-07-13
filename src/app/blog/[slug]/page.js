@@ -72,6 +72,32 @@ const renderOptions = {
     [BLOCKS.TABLE_CELL]: (node, children) => (
       <td className="border border-gray-300 px-4 py-2">{children}</td>
     ),
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      const { file, title, description } = node.data?.target?.fields || {};
+      if (!file) return null;
+
+      const url = file.url.startsWith('http') ? file.url : `https:${file.url}`;
+      const alt = title || 'Embedded asset';
+      const width = file.details?.image?.width || 800;
+      const height = file.details?.image?.height || 500;
+
+      return (
+        <div className="my-6 w-full flex flex-col items-center">
+          <Image
+            src={url}
+            alt={alt}
+            width={width}
+            height={height}
+            className="rounded-lg max-w-full h-auto object-contain"
+          />
+          {description && (
+            <p className="text-sm text-gray-500 mt-2 text-center italic">
+              {description}
+            </p>
+          )}
+        </div>
+      );
+    },
   },
 };
 
