@@ -78,17 +78,13 @@ const renderOptions = {
 
       const url = file.url.startsWith('http') ? file.url : `https:${file.url}`;
       const alt = title || 'Embedded asset';
-      const width = file.details?.image?.width || 800;
-      const height = file.details?.image?.height || 500;
 
       return (
         <div className="my-6 w-full flex flex-col items-center">
-          <Image
+          <img
             src={url}
             alt={alt}
-            width={width}
-            height={height}
-            className="rounded-lg max-w-full h-auto object-contain"
+            className="rounded-lg max-w-full h-auto max-h-[600px] object-contain"
           />
           {description && (
             <p className="text-sm text-gray-500 mt-2 text-center italic">
@@ -250,14 +246,11 @@ export default async function BlogDetailPage({ params }) {
       <NavbarSmallDark />
       <div className="container mx-auto py-16 mt-5 md:mt-14 max-w-6xl min-h-screen">
         {blog.thumbnail && blog.thumbnail.fields && (
-          <div className="relative w-full h-72 mb-6">
-            <Image
+          <div className="w-full mb-6 flex justify-center">
+            <img
               src={blog.thumbnail.fields.file.url.startsWith('http') ? blog.thumbnail.fields.file.url : `https:${blog.thumbnail.fields.file.url}`}
               alt={blog.title}
-              fill
-              className="object-cover rounded-lg"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority
+              className="w-full h-auto rounded-lg max-h-[600px] object-contain"
             />
           </div>
         )}
